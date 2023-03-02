@@ -1,4 +1,5 @@
 var documento = document;
+window.audio = new Audio('src/sound/soundtrack.mp3');
 
 function handleKeydown(e){
 
@@ -6,7 +7,6 @@ function handleKeydown(e){
     Janela.criar()
     Inicio.criar()
 
-    window.audio = new Audio('src/sound/soundtrack.mp3');
     window.audio.play();
     window.audio.volume = 0.05
     window.audioStatus = 1
