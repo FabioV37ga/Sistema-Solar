@@ -1,4 +1,3 @@
-var documento = document;
 window.audio = new Audio('src/sound/soundtrack.mp3');
 
 function handleKeydown(e){
