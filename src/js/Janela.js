@@ -18,8 +18,8 @@ class Janela {
     static elemento_jquery = `
         <section class="janela" style="margin-top:350px">
         </section>`;
-    static elemento_html;
-
+    static elemento_html_janela;
+    static posicaoBkg = 0;
     static criar() {
         $("main").append(this.elemento_jquery);
         Janela.selecionar();
@@ -27,7 +27,7 @@ class Janela {
     }
 
     static selecionar() {
-        this.elemento_html = document.querySelector(".janela");
+        this.elemento_html_janela = document.querySelector(".janela");
         setTimeout(() => {
             Janela.animar(1);
         }, 250);
@@ -51,15 +51,15 @@ class Janela {
                 largura += 3.111
                 margin -= 1;
                 // Atualiza os valores no elemento a cada execução do loop
-                this.elemento_html.style = `height: ${altura}px; width: ${largura}px;margin-top: ${margin}px;`;
+                this.elemento_html_janela.style = `height: ${altura}px; width: ${largura}px;margin-top: ${margin}px;`;
 
                 // Finaliza o loop quando o valor desejado for atingido, no caso 450.
                 if (altura == 450) {
                     // Limpa
                     clearInterval(intervalo);
                     // Formatação final, adiciona classe 'aberta' e limpa a estilização da animação.
-                    this.elemento_html.classList.add("aberta")
-                    this.elemento_html.style = "";
+                    this.elemento_html_janela.classList.add("aberta")
+                    this.elemento_html_janela.style = "";
                     // Chama Inicio.anima(), para mostrar o conteudo do 'inicio'
                     Inicio.animar(1);
                     // Anima o background sentido R
@@ -69,22 +69,22 @@ class Janela {
                 }
             }, 2);
         }
-
+        
         // Animar background;
         window.pause = 0 // Essa variavel serve para pausar o background
+        
         if (tipo == 2) {
-            var posicaoBkg = 0;
             // Loop com intervalo()
             var intervalo = setInterval(() => {
                 // Argumento R: Faz o background mover-se para a direita
                 if (arg == "r") {
-                    posicaoBkg++;
+                    Janela.posicaoBkg++;
                     // Argumento L: Faz o background mover-se para a esquerda
                 } else if (arg == "l") {
-                    posicaoBkg--;
+                    Janela.posicaoBkg--;
                 }
                 // Altera a posição do background a cada execução
-                this.elemento_html.style = `background-position-x: ${posicaoBkg}px;`
+                this.elemento_html_janela.style = `background-position-x: ${Janela.posicaoBkg}px;`
 
                 // Função que faz o background parar
                 if (window.pause == 1) {

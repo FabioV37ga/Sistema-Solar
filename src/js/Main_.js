@@ -1,5 +1,5 @@
 window.audio = new Audio('src/sound/soundtrack.mp3');
-
+var documento = document
 function handleKeydown(e){
 
     document.querySelector("#comecar").remove()

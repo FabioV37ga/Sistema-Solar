@@ -10,6 +10,7 @@
 
 html{
     cursor: url("../img/cursor.png"), auto;
+    overflow: hidden;
 }
 
 body {

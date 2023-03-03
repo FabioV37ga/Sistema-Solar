@@ -1,0 +1,13 @@
+.jogo{
+    width: inherit;
+    height: inherit;
+    overflow: hidden;
+}
+
+.playarea{
+    width: 33.3%;
+    height:inherit;
+    display: flex;
+    overflow: hidden;
+
+}

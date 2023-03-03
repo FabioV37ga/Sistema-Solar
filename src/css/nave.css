@@ -1,0 +1,25 @@
+.ship{
+    width: fit-content;
+    display: flex;
+    align-self: center;
+    position: relative;
+    top:0;
+    left: 209px;
+}
+
+.ally{
+    animation: 3s gamestart;
+}
+
+@keyframes gamestart {
+    0%{
+        left: -130px;
+        opacity: 0;
+    }
+    10%{
+        opacity: 100;
+    }
+    100%{
+        left: 209px;
+    }
+}
