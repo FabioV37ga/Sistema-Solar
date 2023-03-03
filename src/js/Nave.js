@@ -35,10 +35,10 @@ class Nave {
 
         janela.addEventListener("keydown", function (direcao_y) {
             if (moveStateY == 0 || moveStateY == null) {
-                if (direcao_y.keyCode == upCode) {
+                if (direcao_y.keyCode == upCode || direcao_y.key == 'w') {
                     move_y("up");
                     moveStateY = 1
-                } else if (direcao_y.keyCode == downCode) {
+                } else if (direcao_y.keyCode == downCode || direcao_y.key == 's') {
                     move_y("down");
                     moveStateY = 1
                 }
@@ -47,10 +47,10 @@ class Nave {
 
         janela.addEventListener("keydown", function (direcao_x) {
             if (moveStateX == 0 || moveStateX == null) {
-                if (direcao_x.keyCode == leftCode) {
+                if (direcao_x.keyCode == leftCode || direcao_x.key == 'a') {
                     move_x("left")
                     moveStateX = 1
-                } else if (direcao_x.keyCode == rightCode) {
+                } else if (direcao_x.keyCode == rightCode || direcao_x.key == 'd') {
                     if (_left == 232 - 21) {
                         moverFundo(1);
                     }
@@ -115,8 +115,8 @@ class Nave {
 
         janela.addEventListener("keyup", function (direcao_x) {
 
-            if (direcao_x.keyCode == rightCode ||
-                direcao_x.keyCode == leftCode) {
+            if (direcao_x.keyCode == rightCode || direcao_x.key == 'a' ||
+                direcao_x.keyCode == leftCode || direcao_x.key == 'd') {
                 moveStateX = 0
             } if (_left == 232 - 21) {
                 moverFundo(0)
@@ -124,8 +124,8 @@ class Nave {
         })
 
         janela.addEventListener("keyup", function (direcao_y) {
-            if (direcao_y.keyCode == upCode ||
-                direcao_y.keyCode == downCode) {
+            if (direcao_y.keyCode == upCode || direcao_y.key == "w" ||
+                direcao_y.keyCode == downCode || direcao_y.key == 's') {
                 moveStateY = 0
             }
         })
