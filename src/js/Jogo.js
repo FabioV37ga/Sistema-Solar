@@ -40,10 +40,10 @@ class Jogo {
                 // Tutorial de movimentação
                 Tutorial.criar(1)
                 function handleKeydown(event) {
-                    if (event.keyCode == 37 ||
-                        event.keyCode == 38 ||
-                        event.keyCode == 39 ||
-                        event.keyCode == 40) {
+                    if (event.keyCode == 37 || event.key == 'w' ||
+                        event.keyCode == 38 || event.key == 'a' ||
+                        event.keyCode == 39 || event.key == 's' ||
+                        event.keyCode == 40 || event.key == 'd') {
                         setTimeout(() => {
                             Jogo.janela.removeEventListener("keydown", handleKeydown)
                             Tutorial.apagar()
@@ -64,7 +64,7 @@ class Jogo {
         var down = 40;
         Jogo.janela.addEventListener("keydown", function (event) {
             // Usuario aperta [↑]
-            if (event.keyCode == up) {
+            if (event.keyCode == up || event.key == 'w') {
                 // Se não estiver se movimentando
                 if (Jogo.moveState_y == 0) {
                     // Subir
@@ -86,7 +86,7 @@ class Jogo {
                 }
             }
             // Usuario aperta [↓]
-            else if (event.keyCode == down) {
+            else if (event.keyCode == down || event.key == 's') {
                 // Se não estiver se movimentando
                 if (Jogo.moveState_y == 0) {
                     // Desce
@@ -111,7 +111,7 @@ class Jogo {
         // 1.2. Y.keyup
         Jogo.janela.addEventListener("keyup", function (event) {
             // Usuario solta [↑]
-            if (event.keyCode == up) {
+            if (event.keyCode == up || event.key == 'w') {
                 // Se a tecla solta for igual a direção atual
                 if (Jogo.moveState_y == 1) {
                     // PARA DE SE MOVER PRA CIMA;
@@ -124,7 +124,7 @@ class Jogo {
                 }
             }
             // Usuario solta [↓]
-            else if (event.keyCode == down) {
+            else if (event.keyCode == down || event.key == 's') {
                 // Se a tecla solta for igual a direção atual
                 if (Jogo.moveState_y == 2) {
                     // PARA DE SE MOVER PRA BAIXO;
@@ -143,8 +143,8 @@ class Jogo {
         var esquerda = 37;
         var direita = 39;
         Jogo.janela.addEventListener("keydown", function (event) {
-            // Usuario aperta [←]
-            if (event.keyCode == direita) {
+            // Usuario aperta [→]
+            if (event.keyCode == direita || event.key == 'd') {
                 // Se não estiver se movimentando
                 if (Jogo.moveState_x == 0) {
                     // esquerda
@@ -164,8 +164,8 @@ class Jogo {
                     }, 10);
                 }
             }
-            // Usuario aperta [→]
-            else if (event.keyCode == esquerda) {
+            // Usuario aperta [←]
+            else if (event.keyCode == esquerda || event.key == 'a') {
                 // Se não estiver se movimentando
                 if (Jogo.moveState_x == 0) {
                     // direita
@@ -189,7 +189,7 @@ class Jogo {
         // 2.2. X.keyup
         Jogo.janela.addEventListener("keyup", function (event) {
             // Usuario solta [←]
-            if (event.keyCode == direita) {
+            if (event.keyCode == direita || event.key == 'd') {
                 // Se a tecla solta for igual a direção atual
                 if (Jogo.moveState_x == 1) {
                     // PARA DE SE MOVER PRA ESQUERDA
@@ -202,7 +202,7 @@ class Jogo {
                 }
             }
             // Usuario solta [→]
-            else if (event.keyCode == esquerda) {
+            else if (event.keyCode == esquerda || event.key == 'a') {
                 // Se a tecla solta for igual a direção atual
                 if (Jogo.moveState_x == 2) {
                     // PARA DE SE MOVER PRA DIREITA;
@@ -219,7 +219,7 @@ class Jogo {
 
     static ativarAvanco() {
         Fase.animar();
-        setInterval(() => {
+        var intervalo_visual = setInterval(() => {
             if (Jogo.moveState_x == 1 && Nave.x == 210) {
                 if (Fase.velocidade != 2.5)
                     Fase.velocidade = 2.5
@@ -228,6 +228,18 @@ class Jogo {
                     Fase.velocidade = 1
             }
         }, 500);
+
+        // Fase.iniciar(1);
+        var intervalo_pratico = setInterval(() => {
+            if (Fase.levelBlock == 0 && Jogo.moveState_x == 1 && Nave.x == 210) {
+                Fase.avanco++
+                if (Fase.avanco % 800 == 0) {
+                    Fase.levelBlock = 1
+                    console.log("Avançar estado de fase")
+                    clearInterval(intervalo_pratico)
+                }
+            }
+        }, 1);
     }
 
 }
