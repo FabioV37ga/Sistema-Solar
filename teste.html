@@ -12,13 +12,15 @@
     <link rel="stylesheet" href="src/css/navegacao.css">
     <link rel="stylesheet" href="src/css/jogo.css">
     <link rel="stylesheet" href="src/css/nave.css">
+    <link rel="stylesheet" href="src/css/tutorial.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 
 <body>
 
     <main>
-        <section class="nav-header">
+        <!-- <section class="nav-header">
             <div class="left">
                 <a href="" class="nav-header-item home">
                     <img src="src/img/home.png">
@@ -35,14 +37,44 @@
                         src="src/img/git.svg" alt=""></a>
             </div>
         </section>
-        <section class="janela aberta" style="background-position-x: -772px;">
+        <section class="janela aberta" style="background-position-x: 3685px;">
+
+            <div class="inicio" style="">
+                <div class="conteudo-inicio" style="margin: auto 130px;">
+                    <img src="src/img/logo.png" alt="">
+                    <br>
+                    <button>Iniciar</button>
+                </div>
+            </div>
+        </section> -->
+
+        <section class="nav-header">
+            <div class="left">
+                <a href="" class="nav-header-item home">
+                    <img src="src/img/home.png">
+                </a>
+                <div class="volume-container">
+                    <a class="nav-header-item volume">
+                        <img src="src/img/volume_0.png" alt="">
+                    </a>
+                    <input type="range" min="0" max="100" value="5" style="display: none;">
+                </div>
+            </div>
+            <div class="right">
+                <a href="https://github.com/FabioV37ga/Sistema-Solar" class="nav-header-item git"><img
+                        src="src/img/git.svg" alt=""></a>
+            </div>
+        </section>
+        <section class="janela aberta" style="background-position-x: 4648px;">
+
 
             <section class="jogo">
+                <div class="tutorial"></div>
                 <div class="playarea">
-                    <div class = "ship ally"><img src="src/img/ship-ally.png" alt=""></div>
+
+                    <div class="ship ally"><img src="src/img/ship-ally.png" alt=""></div>
                 </div>
             </section>
-
         </section>
     </main>
     <script src="src/js/Nave.js"></script>

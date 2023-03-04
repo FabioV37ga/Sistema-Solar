@@ -1,7 +1,7 @@
 /* 
 Classe Navegacao
     - Essa classe é responsável por criar, controlar e apagar os elementos de Navegação.
-    - Essa classe é invocada através dos arquivo "Janela.js" e "Incio.js".
+    - Essa classe é chamada pelos arquivos "Janela.js" e "Incio.js".
 
 Índice
     1 Atributos

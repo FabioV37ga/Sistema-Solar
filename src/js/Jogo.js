@@ -29,13 +29,32 @@ class Jogo {
         window.pause = 1
         // mostra tutorial
         // quando usuario apertar alguma seta, ativa movimentação,
-        setTimeout(() => {
-            
-            this.ativarMovimentacao()
-            this.ativarAvanco()
-        }, 25);
+        Jogo.mostrarTutorial(1)
         // Liga background dinamico
         // this.ativarBackground()
+    }
+
+    static mostrarTutorial(tutorial) {
+        switch (tutorial) {
+            case 1:
+                // Tutorial de movimentação
+                Tutorial.criar(1)
+                function handleKeydown(event) {
+                    if (event.keyCode == 37 ||
+                        event.keyCode == 38 ||
+                        event.keyCode == 39 ||
+                        event.keyCode == 40) {
+                        setTimeout(() => {
+                            Jogo.janela.removeEventListener("keydown", handleKeydown)
+                            Tutorial.apagar()
+                            Jogo.ativarMovimentacao()
+                            Jogo.ativarAvanco()
+                        }, 25);
+                    }
+                }
+                Jogo.janela.addEventListener("keydown", handleKeydown)
+                break;
+        }
     }
 
     static ativarMovimentacao() {
@@ -201,13 +220,14 @@ class Jogo {
     static ativarAvanco() {
         Fase.animar();
         setInterval(() => {
-            if (Jogo.moveState_x == 1 && Nave.x == 210){
-                if(Fase.velocidade != 2.5)
-                Fase.velocidade = 2.5
-            }else{
+            if (Jogo.moveState_x == 1 && Nave.x == 210) {
+                if (Fase.velocidade != 2.5)
+                    Fase.velocidade = 2.5
+            } else {
                 if (Fase.velocidade != 1)
-                Fase.velocidade = 1
+                    Fase.velocidade = 1
             }
         }, 500);
     }
+
 }
