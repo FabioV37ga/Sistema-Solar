@@ -4,7 +4,10 @@ class Nave {
     `;
     static elemento_html_playArea;
     static elemento_html_nave;
-
+    static statusY = 0;
+    static statusX = 0;
+    static x = 209;
+    static y = 0;
     static criar() {
         $(".playarea").append(this.elemento_jquery);
         this.selecionar();
@@ -21,125 +24,107 @@ class Nave {
         });
     }
 
-    static liberar() {
-        console.log("liber")
-        var janela = document.querySelector("body")
-        const upCode = 38;
-        const downCode = 40;
-        const leftCode = 37;
-        const rightCode = 39;
-        var _top = 0;
-        var moveStateY;
-        var _left = 209;
-        var moveStateX;
+    static mover_y(direcao) {
 
-        janela.addEventListener("keydown", function (direcao_y) {
-            if (moveStateY == 0 || moveStateY == null) {
-                if (direcao_y.keyCode == upCode || direcao_y.key == 'w') {
-                    move_y("up");
-                    moveStateY = 1
-                } else if (direcao_y.keyCode == downCode || direcao_y.key == 's') {
-                    move_y("down");
-                    moveStateY = 1
-                }
-            }
-        })
+        // Direções: 0 - Parado | 1 - Cima | 2 - Baixo
 
-        janela.addEventListener("keydown", function (direcao_x) {
-            if (moveStateX == 0 || moveStateX == null) {
-                if (direcao_x.keyCode == leftCode || direcao_x.key == 'a') {
-                    move_x("left")
-                    moveStateX = 1
-                } else if (direcao_x.keyCode == rightCode || direcao_x.key == 'd') {
-                    if (_left == 232 - 21) {
-                        moverFundo(1);
-                    }
-                    move_x("right")
-                    moveStateX = 1
-                }
-            }
+        // Parar eixo Y
+        if (direcao == 0) {
+            Nave.statusY = 0;
+            anima(direcao)
+        }
+        // Mover para cima
+        else if (direcao == 1) {
+            setTimeout(() => {
+                Nave.statusY = 1;
+                anima(direcao)
+            }, 10);
+        }
+        // Mover para baixo
+        else if (direcao == 2) {
+            setTimeout(() => {
+                Nave.statusY = 1;
+                anima(direcao)
+            }, 10);
+        }
 
-
-        })
-
-
-        function move_y(arg) {
+        // Inicia animação
+        function anima(arg) {
             var intervalo = setInterval(() => {
-                if (moveStateY == 1) {
-                    switch (arg) {
-                        case "up":
-                            if (_top > -211)
-                                _top--;
-                            Nave.elemento_html_nave.style.top = _top + "px"
-                            break;
-                        case "down":
-                            if (_top < 211)
-                                _top++;
-                            Nave.elemento_html_nave.style.top = _top + "px"
-
-                            break;
-                    }
-                } else {
+                // Para a animação se statusY = 0
+                if (Nave.statusY == 0) {
                     clearInterval(intervalo)
+                } else {
+                    // Se a direção for 1, move para cima
+                    if (direcao == 1) {
+                        if (Nave.y > -215) {
+                            Nave.y--
+                            Nave.elemento_html_nave.style.top = `${Nave.y}px`
+                        }
+                    }
+                    // Se a direção for 2, move para baixo
+                    else if (direcao == 2) {
+                        if (Nave.y < 215) {
+                            Nave.y++
+                            Nave.elemento_html_nave.style.top = `${Nave.y}px`
+                        }
+                    }
                 }
-            }, 5);
+            }, 1);
         }
 
-        function move_x(arg) {
+    }
+
+    static mover_x(direcao) {
+        // Direções: 0 - Parado | 1 - Direita | 2 - Esquerda
+
+        // Parar eixo x
+        if (direcao == 0) {
+            Nave.statusX = 0;
+            anima(direcao)
+        }
+        // Mover para a direita
+        else if (direcao == 1) {
+            setTimeout(() => {
+                Nave.statusX = 1;
+                anima(direcao)
+            }, 10);
+        }
+        // Mover para a esquerda
+        else if (direcao == 2) {
+            setTimeout(() => {
+                Nave.statusX = 1;
+                anima(direcao)
+            }, 10);
+        }
+
+        // Inicia animação
+        function anima(arg) {
             var intervalo = setInterval(() => {
-                if (moveStateX == 1) {
-                    switch (arg) {
-                        case "left":
-                            if (_left >= 0)
-                                _left--;
-                            Nave.elemento_html_nave.style.left = _left + "px"
-                            break;
-                        case "right":
-                            if (_left < 232 - 21) {
-                                _left++;
-                                Nave.elemento_html_nave.style.left = _left + "px"
-                            }
-                            if (_left == 232 - 21) {
-                                console.log("movendo background -->")
-                                moverFundo(1)
-                            }
-                            break;
-
-                    }
-                } else {
+                // Para animação se statusX = 0
+                if (Nave.statusX == 0) {
                     clearInterval(intervalo)
+                } else {
+                    // Se for 1, move para a direita;
+                    if (direcao == 1) {
+                        direcao = 1
+                        if (Nave.x < 210) {
+                            Nave.x++
+                            Nave.elemento_html_nave.style.left = `${Nave.x}px`
+                        }
+                        if (Nave.x == 210) {
+                            console.log("moving wall")
+                        }
+                    }
+                    // Se for 2, move para a esquerda;
+                    else if (direcao == 2) {
+                        if (Nave.x > 0) {
+                            Nave.x--
+                            Nave.elemento_html_nave.style.left = `${Nave.x}px`
+                        }
+                    }
                 }
-            }, 5);
+            }, 1);
         }
-
-
-        janela.addEventListener("keyup", function (direcao_x) {
-
-            if (direcao_x.keyCode == rightCode || direcao_x.key == 'a' ||
-                direcao_x.keyCode == leftCode || direcao_x.key == 'd') {
-                moveStateX = 0
-            } if (_left == 232 - 21) {
-                moverFundo(0)
-            }
-        })
-
-        janela.addEventListener("keyup", function (direcao_y) {
-            if (direcao_y.keyCode == upCode || direcao_y.key == "w" ||
-                direcao_y.keyCode == downCode || direcao_y.key == 's') {
-                moveStateY = 0
-            }
-        })
-        var backgroundState = 0;
-        function moverFundo(arg) {
-            if (arg == 1 && backgroundState == 0) {
-                console.log("mov")
-                backgroundState = 1;
-                Janela.animar(2, "l")
-            } else if (arg == 0) {
-                backgroundState = 0
-                window.pause = 1
-            }
-        }
-
     }
 }
