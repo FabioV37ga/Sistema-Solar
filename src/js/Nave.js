@@ -32,20 +32,19 @@ class Nave {
         if (direcao == 0) {
             Nave.statusY = 0;
             anima(direcao)
+
         }
         // Mover para cima
         else if (direcao == 1) {
-            setTimeout(() => {
-                Nave.statusY = 1;
-                anima(direcao)
-            }, 10);
+            Nave.statusY = 1;
+            anima(direcao)
+
         }
         // Mover para baixo
         else if (direcao == 2) {
-            setTimeout(() => {
-                Nave.statusY = 1;
-                anima(direcao)
-            }, 10);
+            Nave.statusY = 1;
+            anima(direcao)
+
         }
 
         // Inicia animação
@@ -82,20 +81,19 @@ class Nave {
         if (direcao == 0) {
             Nave.statusX = 0;
             anima(direcao)
+
         }
         // Mover para a direita
         else if (direcao == 1) {
-            setTimeout(() => {
-                Nave.statusX = 1;
-                anima(direcao)
-            }, 10);
+            Nave.statusX = 1;
+            anima(direcao)
+
         }
         // Mover para a esquerda
         else if (direcao == 2) {
-            setTimeout(() => {
-                Nave.statusX = 1;
-                anima(direcao)
-            }, 10);
+            Nave.statusX = 1;
+            anima(direcao)
+
         }
 
         // Inicia animação
@@ -111,9 +109,6 @@ class Nave {
                         if (Nave.x < 210) {
                             Nave.x++
                             Nave.elemento_html_nave.style.left = `${Nave.x}px`
-                        }
-                        if (Nave.x == 210) {
-                            console.log("moving wall")
                         }
                     }
                     // Se for 2, move para a esquerda;
