@@ -6,6 +6,7 @@ class Jogo {
     </section>
     `;
     static elemento_html_jogo;
+    static elemento_html_janela;
 
     static moveState_y = 0; // 0 - parado | 1 - subindo | 2 - descendo
     static moveState_x = 0; // 0 - parado | 1 - esquerda | 2 - direita
@@ -21,13 +22,18 @@ class Jogo {
 
     static selecionar() {
         this.elemento_html_jogo = document.querySelector(".jogo");
+        Jogo.janela = document.querySelector("body").parentElement;
     }
 
     static iniciar() {
         window.pause = 1
         // mostra tutorial
         // quando usuario apertar alguma seta, ativa movimentação,
-        this.ativarMovimentacao()
+        setTimeout(() => {
+            
+            this.ativarMovimentacao()
+            this.ativarAvanco()
+        }, 25);
         // Liga background dinamico
         // this.ativarBackground()
     }
@@ -37,20 +43,27 @@ class Jogo {
         // 1.1. Y.keydown
         var up = 38;
         var down = 40;
-        document.querySelector("body").addEventListener("keydown", function (event) {
+        Jogo.janela.addEventListener("keydown", function (event) {
             // Usuario aperta [↑]
             if (event.keyCode == up) {
                 // Se não estiver se movimentando
                 if (Jogo.moveState_y == 0) {
                     // Subir
-                    Jogo.moveState_y = 1
-                    Nave.mover_y(Jogo.moveState_y)
+                    setTimeout(() => {
+                        Jogo.moveState_y = 1
+                        Nave.mover_y(Jogo.moveState_y)
+                    }, 5);
                 } else if (Jogo.moveState_y == 1) {
                     // trava execução multipla enquanto segura
                 } else if (Jogo.moveState_y == 2) {
-                    // Se estiver descendo, para e sobe
+                    // Se estiver descendo, para 
                     Jogo.moveState_y = 0;
                     Nave.mover_y(Jogo.moveState_y)
+                    // e sobe
+                    setTimeout(() => {
+                        Jogo.moveState_y = 1;
+                        Nave.mover_y(Jogo.moveState_y)
+                    }, 10);
                 }
             }
             // Usuario aperta [↓]
@@ -58,19 +71,26 @@ class Jogo {
                 // Se não estiver se movimentando
                 if (Jogo.moveState_y == 0) {
                     // Desce
-                    Jogo.moveState_y = 2
-                    Nave.mover_y(Jogo.moveState_y)
+                    setTimeout(() => {
+                        Jogo.moveState_y = 2
+                        Nave.mover_y(Jogo.moveState_y)
+                    }, 5);
                 } else if (Jogo.moveState_y == 2) {
                     // trava execução multipla enquanto segura
                 } else if (Jogo.moveState_y == 1) {
-                    // Se estiver subindo, para e desce
+                    // Se estiver subindo, para 
                     Jogo.moveState_y = 0;
                     Nave.mover_y(Jogo.moveState_y)
+                    // e desce
+                    setTimeout(() => {
+                        Jogo.moveState_y = 2;
+                        Nave.mover_y(Jogo.moveState_y)
+                    }, 10);
                 }
             }
         })
         // 1.2. Y.keyup
-        document.querySelector("body").addEventListener("keyup", function (event) {
+        Jogo.janela.addEventListener("keyup", function (event) {
             // Usuario solta [↑]
             if (event.keyCode == up) {
                 // Se a tecla solta for igual a direção atual
@@ -101,44 +121,56 @@ class Jogo {
 
         // 2. Sessão movimentação eixo x
         // 2.1 X.keydown
-        var left = 39;
-        var right = 37;
-        document.querySelector("body").addEventListener("keydown", function (event) {
+        var esquerda = 37;
+        var direita = 39;
+        Jogo.janela.addEventListener("keydown", function (event) {
             // Usuario aperta [←]
-            if (event.keyCode == left) {
+            if (event.keyCode == direita) {
                 // Se não estiver se movimentando
                 if (Jogo.moveState_x == 0) {
                     // esquerda
-                    Jogo.moveState_x = 1
-                    Nave.mover_x(Jogo.moveState_x)
+                    setTimeout(() => {
+                        Jogo.moveState_x = 1
+                        Nave.mover_x(Jogo.moveState_x)
+                    }, 5);
                 } else if (Jogo.moveState_x == 1) {
                     // trava execução multipla enquanto segura
                 } else if (Jogo.moveState_x == 2) {
                     // Se estiver direita, para e esquerda
                     Jogo.moveState_x = 0;
                     Nave.mover_x(Jogo.moveState_x)
+                    setTimeout(() => {
+                        Jogo.moveState_x = 1;
+                        Nave.mover_x(Jogo.moveState_x)
+                    }, 10);
                 }
             }
             // Usuario aperta [→]
-            else if (event.keyCode == right) {
+            else if (event.keyCode == esquerda) {
                 // Se não estiver se movimentando
                 if (Jogo.moveState_x == 0) {
                     // direita
-                    Jogo.moveState_x = 2
-                    Nave.mover_x(Jogo.moveState_x)
+                    setTimeout(() => {
+                        Jogo.moveState_x = 2
+                        Nave.mover_x(Jogo.moveState_x)
+                    }, 5);
                 } else if (Jogo.moveState_x == 2) {
                     // trava execução multipla enquanto segura
                 } else if (Jogo.moveState_x == 1) {
                     // Se estiver esquerda, para e direita
                     Jogo.moveState_x = 0;
                     Nave.mover_x(Jogo.moveState_x)
+                    setTimeout(() => {
+                        Jogo.moveState_x = 2;
+                        Nave.mover_x(Jogo.moveState_x)
+                    }, 10);
                 }
             }
         })
         // 2.2. X.keyup
-        document.querySelector("body").addEventListener("keyup", function (event) {
+        Jogo.janela.addEventListener("keyup", function (event) {
             // Usuario solta [←]
-            if (event.keyCode == left) {
+            if (event.keyCode == direita) {
                 // Se a tecla solta for igual a direção atual
                 if (Jogo.moveState_x == 1) {
                     // PARA DE SE MOVER PRA ESQUERDA
@@ -151,7 +183,7 @@ class Jogo {
                 }
             }
             // Usuario solta [→]
-            else if (event.keyCode == right) {
+            else if (event.keyCode == esquerda) {
                 // Se a tecla solta for igual a direção atual
                 if (Jogo.moveState_x == 2) {
                     // PARA DE SE MOVER PRA DIREITA;
@@ -164,5 +196,18 @@ class Jogo {
                 }
             }
         })
+    }
+
+    static ativarAvanco() {
+        Fase.animar();
+        setInterval(() => {
+            if (Jogo.moveState_x == 1 && Nave.x == 210){
+                if(Fase.velocidade != 2.5)
+                Fase.velocidade = 2.5
+            }else{
+                if (Fase.velocidade != 1)
+                Fase.velocidade = 1
+            }
+        }, 500);
     }
 }
