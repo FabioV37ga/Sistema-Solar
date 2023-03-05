@@ -1,4 +1,4 @@
-.tutorial{
+.tutorial {
     height: inherit;
     width: inherit;
     position: absolute;
@@ -7,14 +7,19 @@
 }
 
 @keyframes aparecer {
-    0%{
+    0% {
         opacity: 0%;
     }
-    100%{
+
+    100% {
         opacity: 100%;
     }
 }
 
-._1{
+._1 {
     background-image: url("../img/tutorial_1.png");
+}
+
+._2 {
+    background-image: url("../img/tutorial_2.png")
 }
