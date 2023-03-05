@@ -69,10 +69,10 @@ class Janela {
                 }
             }, 2);
         }
-        
+
         // Animar background;
         window.pause = 0 // Essa variavel serve para pausar o background
-        
+
         if (tipo == 2) {
             // Loop com intervalo()
             var intervalo = setInterval(() => {

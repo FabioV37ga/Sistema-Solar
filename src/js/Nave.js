@@ -31,24 +31,16 @@ class Nave {
         // Parar eixo Y
         if (direcao == 0) {
             Nave.statusY = 0;
-            anima(direcao)
-
         }
-        // Mover para cima
-        else if (direcao == 1) {
-            Nave.statusY = 1;
-            anima(direcao)
-
-        }
-        // Mover para baixo
-        else if (direcao == 2) {
+        // Mover eixo Y
+        else if (direcao > 0) {
             Nave.statusY = 1;
             anima(direcao)
 
         }
 
         // Inicia animação
-        function anima(arg) {
+        function anima() {
             var intervalo = setInterval(() => {
                 // Para a animação se statusY = 0
                 if (Nave.statusY == 0) {
@@ -80,24 +72,17 @@ class Nave {
         // Parar eixo x
         if (direcao == 0) {
             Nave.statusX = 0;
-            anima(direcao)
 
         }
-        // Mover para a direita
-        else if (direcao == 1) {
-            Nave.statusX = 1;
-            anima(direcao)
-
-        }
-        // Mover para a esquerda
-        else if (direcao == 2) {
+        // Mover eixo x
+        else if (direcao > 0) {
             Nave.statusX = 1;
             anima(direcao)
 
         }
 
         // Inicia animação
-        function anima(arg) {
+        function anima() {
             var intervalo = setInterval(() => {
                 // Para animação se statusX = 0
                 if (Nave.statusX == 0) {
@@ -105,7 +90,7 @@ class Nave {
                 } else {
                     // Se for 1, move para a direita;
                     if (direcao == 1) {
-                        direcao = 1
+                        // Limita o tanto que pode se mover pra direita
                         if (Nave.x < 210) {
                             Nave.x++
                             Nave.elemento_html_nave.style.left = `${Nave.x}px`
