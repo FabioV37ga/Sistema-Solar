@@ -1,13 +1,14 @@
 class Fase {
     constructor(numero, inimigos, duracao) {
         this.numero = numero;
-        this.inimigos = inimigos.split('').length > 1 ? inimigos.split(",") : inimigos 
+        this.inimigos = inimigos.split('').length > 1 ? inimigos.split(",") : inimigos
         this.duracao = duracao.split('').length > 1 ? duracao.split(",") : duracao
         this.planeta = numero;
         this.iniciar()
     }
 
     iniciar() {
+        console.log(this.inimigos)
         console.log(`[#${this.numero}] Fase iniciada. \n`)
         console.log(`[#${this.numero}] Viagem inciada: Planeta anterior → Confronto atual \n`)
         this.viajar(1)
@@ -25,16 +26,16 @@ class Fase {
         // }, 1);
         if (arg == 1) {
             setTimeout(() => {
-                for (let nave = 0; nave <= this.inimigos.length-1; nave++){
-                    // NaveInimiga.criar(this.inimigos[nave])
-                }
+                NaveInimiga.criar(this.inimigos)
 
-                // ANIMATIONEND ENEMYSHIP:
-                if (this.numero == 1){
-                    Jogo.tutorial(2)
-                }else{
-                    // NaveInimiga.ativar()
-                }
+                document.querySelector(".enemyArea").addEventListener("animationend", () => {
+                    
+                    if (this.numero == 1) {
+                        Jogo.tutorial(2)
+                    } else {
+                        // NaveInimiga.ativar()
+                    }
+                })
             }, this.duracao[0] * 1000);
         }
     }

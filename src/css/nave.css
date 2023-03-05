@@ -2,7 +2,6 @@
     width: fit-content;
     display: flex;
     align-self: center;
-    position: relative;
     top:0;
     left: 209px;
     -webkit-user-select: none; /* Safari */
@@ -11,7 +10,12 @@
 }
 
 .ally{
+    position: relative;
     animation: 3s gamestart;
+}
+
+.enemy{
+    transform: scaleX(-1);
 }
 
 @keyframes gamestart {

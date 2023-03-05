@@ -20,7 +20,9 @@
 <body>
 
     <main>
-        <!-- <section class="nav-header">
+
+
+        <section class="nav-header">
             <div class="left">
                 <a href="" class="nav-header-item home">
                     <img src="src/img/home.png">
@@ -37,47 +39,35 @@
                         src="src/img/git.svg" alt=""></a>
             </div>
         </section>
-        <section class="janela aberta" style="background-position-x: 3685px;">
-
-            <div class="inicio" style="">
-                <div class="conteudo-inicio" style="margin: auto 130px;">
-                    <img src="src/img/logo.png" alt="">
-                    <br>
-                    <button>Iniciar</button>
-                </div>
-            </div>
-        </section> -->
-
-        <section class="nav-header">
-            <div class="left">
-                <a href="" class="nav-header-item home">
-                    <img src="src/img/home.png">
-                </a>
-                <div class="volume-container">
-                    <a class="nav-header-item volume">
-                        <img src="src/img/volume_0.png" alt="">
-                    </a>
-                    <input type="range" min="0" max="100" value="5" style="display: none;">
-                </div>
-            </div>
-            <div class="right">
-                <a href="https://github.com/FabioV37ga/Sistema-Solar" class="nav-header-item git"><img
-                        src="src/img/git.svg" alt=""></a>
-            </div>
-        </section>
-        <section class="janela aberta" style="background-position-x: 4648px;">
+        <section class="janela aberta" style="background-position-x: 42px;">
 
 
             <section class="jogo">
-                <div class="tutorial"></div>
                 <div class="playarea">
 
-                    <div class="ship ally"><img src="src/img/ship-ally.png" alt=""></div>
+                    <div class="ship ally" style="left: 210px; top: -42px;">
+                        <img src="src/img/ship-ally.png" alt="">
+                    </div>
+                </div>
+                <div class="enemyArea">
+                    <div class="shipBay">
+                        <div class="ship enemy">
+                            <img src="src/img/ship-enemy.png" alt="">
+                        </div>
+                    </div>
+                    <div class="shipBay __1"></div>
+                    <div class="shipBay __2"></div>
+                    <div class="shipBay __3"></div>
+                    <div class="shipBay __4"></div>
+                    <div class="shipBay __5"></div>
+                    <div class="shipBay __6"></div>
                 </div>
             </section>
         </section>
     </main>
     <script src="src/js/Nave.js"></script>
+    <script src="src/js/NaveInimiga.js"></script>
+
 </body>
 
 </html>

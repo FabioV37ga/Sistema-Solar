@@ -107,4 +107,8 @@ class Nave {
             }, 1);
         }
     }
+
+    static atirar(){
+        
+    }
 }

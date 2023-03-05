@@ -1,13 +1,36 @@
-.jogo{
+.jogo {
     width: inherit;
     height: inherit;
     overflow: hidden;
+    display: flex;
+    justify-content: space-between;
 }
 
-.playarea{
+.playarea {
     width: 33.3%;
-    height:inherit;
+    height: inherit;
     display: flex;
     overflow: hidden;
+}
 
+.enemyArea {
+    height: inherit;
+    width: 50px;
+    animation: enemy-in 1s;
+    margin-right: 40px;
+}
+
+@keyframes enemy-in {
+        0%{
+            margin-right: -50px;
+        }
+        100%{
+            margin-right: 40px;
+        }
+}
+
+.shipBay{
+    width: 50px;
+    height: calc(100% / 9);
+    display: flex;
 }
