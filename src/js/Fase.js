@@ -26,7 +26,7 @@ class Fase {
         if (arg == 1) {
             setTimeout(() => {
                 for (let nave = 0; nave <= this.inimigos.length-1; nave++){
-                    NaveInimiga.criar(this.inimigos[nave])
+                    // NaveInimiga.criar(this.inimigos[nave])
                 }
 
                 // ANIMATIONEND ENEMYSHIP:
