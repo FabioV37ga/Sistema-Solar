@@ -82,7 +82,6 @@ class Inicio {
         Inicio.elemento_html_inicio.addEventListener("animationend", () => {
             Inicio.elemento_html_inicio.remove()
         })
-        console.log("iniciar")
         Inicio.elemento_html_inicio.classList.add("some");
         Jogo.criar()
     }

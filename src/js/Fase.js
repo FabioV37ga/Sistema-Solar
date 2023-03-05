@@ -33,7 +33,7 @@ class Fase {
                 if (this.numero == 1){
                     Jogo.tutorial(2)
                 }else{
-                    NaveInimiga.ativar()
+                    // NaveInimiga.ativar()
                 }
             }, this.duracao[0] * 1000);
         }
