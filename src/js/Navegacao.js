@@ -1,4 +1,4 @@
-/* 
+/*
 Classe Navegacao
     - Essa classe é responsável por criar, controlar e apagar os elementos de Navegação.
     - Essa classe é chamada pelos arquivos "Janela.js" e "Incio.js".
@@ -11,8 +11,6 @@ Classe Navegacao
         1.4 elemento_html_head_barraVolume → elemento html input[type=range]
     2 Métodos
         2.1 criar(tipo) → Cria elementos da classe
-            2.1.1 tipo 1 → Cria elementos nav.header
-            2.1.1 tipo 2 → Cria elementos nav.footer
         2.2 selecionar() → Atribui o campo html aos atributos _html
         2.3 controlar() → Adiciona função aos itens da navegação.
    */
@@ -41,10 +39,8 @@ class Navegacao {
     static elemento_html_head_barraVolume;
 
 
-    static criar(tipo) {
-        if (tipo == 1) {
-            $(this.elemento_jquery_head).insertBefore(".janela");
-        }
+    static criar() {
+        $(this.elemento_jquery_head).insertBefore(".janela");
         this.selecionar();
     }
 
@@ -69,12 +65,14 @@ class Navegacao {
         })
         //     → Coloca função no click do volume
         this.elemento_html_head_volumeContainer.children[0].addEventListener("click", () => {
-            //          → Alterna entre MUTE e VOL=10, trocando para as imagens respectivas.
+            //          → Alterna entre MUTE e VOL=5, trocando para as imagens respectivas.
             if (window.audioStatus == 1) {
                 this.elemento_html_head_barraVolume.value = 0
                 window.audio.volume = 0;
                 window.audioStatus = 0;
                 this.elemento_html_head_volumeContainer.children[0].children[0].src = "src/img/volume_0.png"
+                window.localStorage.setItem('soundtrack_volume', 0)
+                window.localStorage.setItem('soundtrack_volume_pic', "src/img/volume_0.png")
             } else {
                 this.elemento_html_head_barraVolume.value = 5
                 window.audio.volume = 0.05
@@ -82,14 +80,23 @@ class Navegacao {
                 this.elemento_html_head_volumeContainer.children[0].children[0].src = "src/img/volume_1.png"
             }
         })
+
+        // LOCALSTORAGE: Define os valores de volume & aparencia do ultimo uso da página, caso existam.
+        var volumeAnterior = window.localStorage.getItem("soundtrack_volume")
+        volumeAnterior != null ? this.elemento_html_head_barraVolume.value = volumeAnterior * 100 : '';
+        var volumeFotoAnterior = window.localStorage.getItem("soundtrack_volume_pic")
+        volumeFotoAnterior != null ? this.elemento_html_head_volumeContainer.children[0].children[0].src = volumeFotoAnterior : '';
+
         //     → Coloca função no range de volume
         this.elemento_html_head_barraVolume.addEventListener("input", () => {
             //          → Sempre que o usuário mover o range, faz volume = range.value
             window.audio.volume = this.elemento_html_head_barraVolume.value / 100
+            window.localStorage.setItem('soundtrack_volume', window.audio.volume)
             //          → Sessão responsável por trocar as imagens do icone de volume dependendo no volume:
             //          VOL = 0
             if (this.elemento_html_head_barraVolume.value == 0) {
                 this.elemento_html_head_volumeContainer.children[0].children[0].src = "src/img/volume_0.png"
+                window.localStorage.setItem('soundtrack_volume_pic', "src/img/volume_0.png")
                 window.audioStatus = 0;
             } else {
                 window.audioStatus = 1;
@@ -99,14 +106,17 @@ class Navegacao {
             if (this.elemento_html_head_barraVolume.value <= 35
                 && this.elemento_html_head_barraVolume.value > 0) {
                 this.elemento_html_head_volumeContainer.children[0].children[0].src = "src/img/volume_1.png"
+                window.localStorage.setItem('soundtrack_volume_pic', "src/img/volume_1.png")
                 //          VOL = 36-75
             } else if (this.elemento_html_head_barraVolume.value > 35
                 && this.elemento_html_head_barraVolume.value <= 75) {
                 this.elemento_html_head_volumeContainer.children[0].children[0].src = "src/img/volume_2.png"
+                window.localStorage.setItem('soundtrack_volume_pic', "src/img/volume_2.png")
                 //          VOL = 76-100
             } else if (this.elemento_html_head_barraVolume.value > 75
                 && this.elemento_html_head_barraVolume.value <= 100) {
                 this.elemento_html_head_volumeContainer.children[0].children[0].src = "src/img/volume_3.png"
+                window.localStorage.setItem('soundtrack_volume_pic', "src/img/volume_3.png")
             }
         })
     }
