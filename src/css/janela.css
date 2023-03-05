@@ -1,6 +1,6 @@
 .janela {
     width: 0;
-    border: rgba(0,0,0,0.4) 2px solid;
+    /* border: rgba(0,0,0,0.4) 2px solid; */
     margin: 80px auto;
     background: url("../img/stars.jpg") fixed;
 }

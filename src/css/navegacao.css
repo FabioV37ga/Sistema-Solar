@@ -5,6 +5,8 @@
     display: flex;
     justify-content: space-between;
     animation: aparece 3s;
+    z-index: 1;
+    position: relative;
 }
 
 .left {
