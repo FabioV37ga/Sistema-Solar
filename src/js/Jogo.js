@@ -62,7 +62,7 @@ class Jogo {
                         setTimeout(() => {
                             Jogo.janela.removeEventListener("keydown", handleTutorial2)
                             Tutorial.apagar()
-                            NaveInimiga.ativar()
+                            // NaveInimiga.ativar()
                             Jogo.enableMove = 1;
                         }, 25);
                     }
