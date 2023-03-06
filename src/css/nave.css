@@ -1,32 +1,55 @@
-.ship{
+.ship {
     width: fit-content;
     display: flex;
     align-self: center;
-    top:0;
+    top: 0;
     left: 209px;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
 }
 
-.ally{
+.ally {
     position: relative;
     animation: 3s gamestart;
+    z-index: 2;
 }
 
-.enemy{
+.enemy {
     transform: scaleX(-1);
 }
 
 @keyframes gamestart {
-    0%{
+    0% {
         left: -130px;
         opacity: 0;
     }
-    10%{
+
+    10% {
         opacity: 100;
     }
-    100%{
+
+    100% {
         left: 209px;
     }
+}
+.gun{
+    display: flex;
+}
+
+.tiro {
+    opacity: 0;
+    z-index: 1;
+    position: relative;
+    height: 3px;
+    width: 10px;
+    background: lime;
+    align-self: center;
+}
+
+.tiroInimigo {
+    background: orangered;
 }

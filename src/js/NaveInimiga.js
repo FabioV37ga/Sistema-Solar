@@ -24,14 +24,15 @@ class NaveInimiga {
 
     static criar(arg) {
         $(".jogo").append(NaveInimiga.elemento_jquery_enemyArea);
-        
+
         arg.toString().split('') > 1 ? single() : multiple();
-        function single(){
+
+        function single() {
             $(`.__${arg}`).append(NaveInimiga.elemento_jquery_nave)
         }
-        function multiple(){
+        function multiple() {
             NaveInimiga.selecionar()
-            for (let inimigo = 0; inimigo <= arg.length - 1; inimigo++){
+            for (let inimigo = 0; inimigo <= arg.length - 1; inimigo++) {
                 $(`.__${arg[inimigo]}`).append(NaveInimiga.elemento_jquery_nave)
             }
         }

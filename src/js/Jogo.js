@@ -90,7 +90,7 @@ class Jogo {
                         setTimeout(() => {
                             Jogo.janela.removeEventListener("keydown", handleTutorial2)
                             Tutorial.apagar()
-                            // NaveInimiga.ativar()
+                            Jogo.ativarArmas()
                             Jogo.enableMove = 1;
                         }, 25);
                     }
@@ -261,6 +261,21 @@ class Jogo {
                 else {
                     // Não faz nada
                 }
+            }
+        })
+    }
+
+    static ativarArmas() {
+        Jogo.janela.addEventListener("keydown", function (e) {
+            if (e.keyCode == 32 && Jogo.enableMove == 1 && (Jogo.shootState == 0 || Jogo.shootState == null)) {
+                Nave.shootState = 1
+                Nave.atirar(1)
+            }
+        })
+
+        Jogo.janela.addEventListener("keyup", function (e) {
+            if (e.keyCode == 32 && Jogo.enableMove == 1) {
+                Nave.shootState = 0
             }
         })
     }

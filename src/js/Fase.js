@@ -32,11 +32,14 @@ class Fase {
                     
                     if (this.numero == 1) {
                         Jogo.tutorial(2)
+                        // this.viajar(2)
                     } else {
                         // NaveInimiga.ativar()
                     }
                 })
             }, this.duracao[0] * 1000);
+        }else{
+            console.log("penis ga")
         }
     }
 }

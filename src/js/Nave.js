@@ -2,12 +2,17 @@ class Nave {
     static elemento_jquery = `
     <div class = "ship ally"><img src="src/img/ship-ally.png" alt=""></div>
     `;
+
+    // Elementos visuais
     static elemento_html_playArea;
     static elemento_html_nave;
+    // Elementos lógicos
     static statusY = 0;
     static statusX = 0;
     static x = 209;
     static y = 0;
+    static shootCooldown = 0;
+    static shootState = 0
     static criar() {
         $(".playarea").append(this.elemento_jquery);
         this.selecionar();
@@ -108,7 +113,19 @@ class Nave {
         }
     }
 
-    static atirar(){
-        
+    static atirar(e) {
+        var intervalo = setInterval(() => {
+            if (Nave.shootState == 1) {
+                if (Nave.shootCooldown == 0) {
+                    var tiro = new Tiro(`${Nave.x - 25} ,${Nave.y}`, 1)
+                    Nave.shootCooldown = 1
+                    setTimeout(() => {
+                        Nave.shootCooldown = 0
+                    }, 600);
+                }
+            } else {
+                clearInterval(intervalo)
+            }
+        }, 1);
     }
 }

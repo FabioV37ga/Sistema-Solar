@@ -10,7 +10,6 @@
     width: 33.3%;
     height: inherit;
     display: flex;
-    overflow: hidden;
 }
 
 .enemyArea {

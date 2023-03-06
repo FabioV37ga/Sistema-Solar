@@ -5,18 +5,21 @@
     background: url("../img/stars.jpg") fixed;
 }
 
-.aberta{
+.aberta {
     width: 700px;
     height: 450px;
     box-shadow: 0px 0px 17px 2px rgb(113 190 255 / 75%);
     animation: abrir 1s;
 }
 
-@keyframes abrir{
+@keyframes abrir {
     0% {
-        box-shadow: 0px 0px 17px 2px rgb(113 190 255 / 0%);;
+        box-shadow: 0px 0px 17px 2px rgb(113 190 255 / 0%);
+        ;
     }
-    100%{
-        box-shadow: 0px 0px 17px 2px rgb(113 190 255 / 75%);;
+
+    100% {
+        box-shadow: 0px 0px 17px 2px rgb(113 190 255 / 75%);
+        ;
     }
 }
