@@ -284,7 +284,7 @@ class Jogo {
         Jogo.faseAtual <= 8 ? Jogo.faseAtual++ : Jogo.faseAtual;
         switch (Jogo.faseAtual) {
             case 1:
-                var fase_1 = new Fase(1, '3', '2,3')
+                var fase_1 = new Fase(1, '1,2,3,4,5,6,7,8,9', '2,3')
                 break;
         }
 

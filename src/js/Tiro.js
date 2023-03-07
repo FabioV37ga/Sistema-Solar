@@ -15,35 +15,9 @@ class Tiro {
         Tiro.id++
         this.id = Tiro.id;
         this.criar()
-        console.log(this.id)
     }
 
     criar() {
-        // Tiro.id++
-        // $(".gun")[0] == null ? $("<div>", { class: "gun"}).appendTo(".playarea") : null;
-        // $("<div>", { class: "tiro" , id: this.id}).appendTo(".gun");
-
-        // this.selecionar()
-        // console.log(this.id + " disparado.")
-
-        // this.x = parseInt(this.posicao.toString().split(',')[0])
-        // this.y = parseInt(this.posicao.toString().split(',')[1])
-
-        // this.elemento_html[this.id].style.top = this.y + "px"
-        // this.elemento_html[this.id].style.left = this.x + "px"
-
-        // var intervalo = setInterval(() => {
-        //     if (this.elemento_html[this.id].style.left < "680px") {
-        //         this.x++
-        //         this.elemento_html[this.id].style.left = this.x + "px"
-        //     } else {
-        //         console.log(this.id + "AQUI ↓")
-        //         console.log(this.elemento_html[this.id])
-        //         this.elemento_html[this.id].remove();
-        //         Tiro.id = 0;
-        //         clearInterval(intervalo);
-        //     }
-        // }, 1);
         $(".gun")[0] == null ? $("<div>", { class: "gun" }).appendTo(".playarea") : null;
         $("<div>", { class: "tiro", id: this.id }).appendTo(".gun");
 
@@ -52,22 +26,46 @@ class Tiro {
         this.y = parseInt(this.posicao.toString().split(',')[1])
 
         var atual = this.selecionar();
-        console.log(`[${atual.id}]`)
+
 
         atual.style.top = this.y + "px"
-        
+
         var intervalo = setInterval(() => {
             if (this.x < 680) {
                 this.x++
                 atual.style.left = this.x + "px"
                 atual.style.opacity != "100%" ? atual.style.opacity = "100%" : 0;
-            } else {
+                if (atual.style.left == "582px") {
+                    verificarTiro()
+                }
+            }
+            else {
                 atual.remove()
                 clearInterval(intervalo)
             }
         }, 1);
+        var y = this.y
+        function verificarTiro() {
+            var campo = document.querySelector(".enemyArea")
+            var nave = document.querySelectorAll(".shipBay")
+            var teto = -223
+            var chao = -176
+
+            for (let i = 0; i <= campo.children.length - 1; i++) {
+                if (nave[i].children.length > 0) {
+                    if (y >= `${teto + (i * 50)}` && y <= `${chao + (i * 50)}`) {
+                        console.log("acerto.")
+                        nave[i].children[0].remove()
+                    }else{
+                        console.log("erro.")
+                    }
+
+                }
+            }
 
 
+
+        }
 
     }
 
