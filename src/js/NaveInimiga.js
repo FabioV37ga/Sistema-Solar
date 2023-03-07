@@ -65,6 +65,7 @@ class NaveInimiga {
                 // quando terminar a animação, apaga o elemento e para o intervalo.
                 if (img == 8) {
                     atual.remove();
+                    Jogo.verificaInimigos()
                     clearInterval(intervalo)
                 }
             }

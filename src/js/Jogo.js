@@ -298,4 +298,12 @@ class Jogo {
         }
 
     }
+
+    static verificaInimigos(){
+        if(document.querySelector(".enemy")){
+
+        }else{
+            console.log(`[#${Jogo.faseAtual}] Confronto: Todos os inimigos foram eliminados.`)
+        }
+    }
 }
