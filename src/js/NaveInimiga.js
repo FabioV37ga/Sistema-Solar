@@ -42,4 +42,17 @@ class NaveInimiga {
         this.elemento_html_enemyArea = $(".enemyArea")
         this.elemento_html_enemyShipbay = document.querySelectorAll(".shipBay")
     }
+
+    static explodir(nave){
+        var img = 0;
+        var intervalo = setInterval(() => {
+            img++
+            $(".shipBay")[nave].children[0].children[0].src = `src/img/boom_${img}.png`
+            // $(".shipBay")[nave].children[0].src = `src/img/boom_${img}`
+            if (img == 8){
+                $(".shipBay")[nave].children[0].remove();
+                clearInterval(intervalo)
+            }
+        }, 100);
+    }
 }

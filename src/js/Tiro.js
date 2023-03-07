@@ -44,6 +44,7 @@ class Tiro {
                 clearInterval(intervalo)
             }
         }, 1);
+
         var y = this.y
         function verificarTiro() {
             var campo = document.querySelector(".enemyArea")
@@ -55,18 +56,15 @@ class Tiro {
                 if (nave[i].children.length > 0) {
                     if (y >= `${teto + (i * 50)}` && y <= `${chao + (i * 50)}`) {
                         console.log("acerto.")
-                        nave[i].children[0].remove()
-                    }else{
+                        // nave[i].children[0].remove()
+                        atual.remove()
+                        NaveInimiga.explodir(i)
+                    } else {
                         console.log("erro.")
                     }
-
                 }
             }
-
-
-
         }
-
     }
 
     selecionar() {
