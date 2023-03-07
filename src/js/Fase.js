@@ -8,13 +8,10 @@ class Fase {
     }
 
     iniciar() {
-        console.log(this.inimigos)
         console.log(`[#${this.numero}] Fase iniciada. \n`)
         console.log(`[#${this.numero}] Viagem inciada: Planeta anterior → Confronto atual \n`)
         this.viajar(1)
     }
-
-
 
     viajar(arg) {
         // Fase.janela = document.querySelector(".janela");

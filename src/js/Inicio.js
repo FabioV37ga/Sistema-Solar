@@ -60,7 +60,7 @@ class Inicio {
         })
 
         function handleClick() {
-
+            console.log(`[Inicio] Iniciar`)
             Inicio.elemento_html_botao.removeEventListener("click", handleClick)
             button_click = new Audio("src/sound/button-click.mp3");;
             button_click.play()

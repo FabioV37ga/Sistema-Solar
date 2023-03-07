@@ -1,6 +1,6 @@
 /*
 Classe Tutorial
-    - Essa classe é responsável por criar, selecionar e apagar os elementos do Tutorial
+    - Essa classe é responsável por criar, selecionar e apagar os elementos do Tutorial.
 */
 class Tutorial {
     static tipo = 0;

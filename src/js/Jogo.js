@@ -291,8 +291,10 @@ class Jogo {
         switch (Jogo.faseAtual) {
             // Switch para escolher a fase atual e informações numéricas das fases.
             case 1:
-                var fase_1 = new Fase(1, '1,2,3,4,5,6,7,8,9', '2,3')
+                var fase_1 = new Fase(1, '3,6', '2,3')
                 break;
+            case 2:
+                var fase_2 = new Fase
         }
 
     }

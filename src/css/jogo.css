@@ -20,15 +20,16 @@
 }
 
 @keyframes enemy-in {
-        0%{
-            margin-right: -50px;
-        }
-        100%{
-            margin-right: 40px;
-        }
+    0% {
+        margin-right: -50px;
+    }
+
+    100% {
+        margin-right: 40px;
+    }
 }
 
-.shipBay{
+.shipBay {
     width: 50px;
     height: calc(100% / 9);
     display: flex;
