@@ -15,7 +15,8 @@ for (let i = 1; i <= 8; i++) {
     $(".preload").append($("<audio>", { src: `src/sound/shoot.mp3`, volume: '0', class: "pre_audio" }))
 
     for (let i = 0; i < $(".pre_audio").length - 1; i++) {
-        console.log(`[#PRELOAD] Audio: ${$(".pre_audio")[i].src.toString().split("/")[12]}✅`)
+        var ambiente = window.location.href == 'https://fabiov37ga.github.io/Sistema-Solar/' ? 4 : 12;
+        console.log(`[#PRELOAD] Audio: ${$(".pre_audio")[i].src.toString().split("/")[ambiente]}✅`)
     }
 }
 
