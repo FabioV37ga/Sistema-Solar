@@ -26,10 +26,13 @@ class Fase {
         // }, 1);
         if (arg == 1) {
             setTimeout(() => {
+                console.log(`[#${this.numero}] Viagem Finalizada: Planeta anterior → Confronto atual \n`)
+
                 NaveInimiga.criar(this.inimigos)
 
+                console.log(`[#${this.numero}] Confronto iniciado\n`)
+
                 document.querySelector(".enemyArea").addEventListener("animationend", () => {
-                    
                     if (this.numero == 1) {
                         Jogo.tutorial(2)
                         // this.viajar(2)
@@ -37,8 +40,8 @@ class Fase {
                         // NaveInimiga.ativar()
                     }
                 })
-            }, this.duracao[0] * 1000);
-        }else{
+            }, parseInt(this.duracao[0]) * 1000);
+        } else {
             console.log("penis ga")
         }
     }
