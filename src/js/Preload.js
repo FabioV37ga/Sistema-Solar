@@ -1,10 +1,10 @@
 // Esse arquivo é responsável por carregar recursos do jogo anteriormente para evitar instabilidade
-$("main").append($("<div>", { class: 'preload' }))
+$("main").append($("<div>", { class: 'preload' , style: 'height: 1px; position: absolute; margin-left: -1000000px'}))
 console.log(`[#PRELOAD] iniciado`)
 
 for (let i = 1; i <= 8; i++) {
     // imagens de explosão
-    $(".preload").append($("<img>", { src: `src/img/boom_${i}.png`, style: 'opacity: 0', class: "boom" }))
+    $(".preload").append($("<img>", { src: `src/img/boom_${i}.png`, class: "boom" }))
     console.log(`[#PRELOAD] Image: boom_${i}.png ✅`)
 }
 {
@@ -28,6 +28,6 @@ if ($(".boom").length == 8 && $(".pre_audio").length == 5) {
         console.log(`[#PRELOAD] Concluído ✅`)
     }, 2000);
     setTimeout(() => {
-        $(".preload")[0].remove()
+        // $(".preload")[0].remove()
     }, 100);
 }
