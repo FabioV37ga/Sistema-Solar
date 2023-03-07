@@ -1,5 +1,4 @@
 class NaveInimiga {
-
     static ship_placeholder;
     static elemento_jquery_enemyArea = `
     <div class="enemyArea">
@@ -18,15 +17,17 @@ class NaveInimiga {
     <div class="ship enemy">
         <img src="src/img/ship-enemy.png" alt="">
     </div>`
-
+    static audio = new Audio('src/sound/boom.wav')
     static elemento_html_enemyArea;
     static elemento_html_enemyShipbay;
 
     static criar(arg) {
+        // Cria elementos do Campo inimigo.
         $(".jogo").append(NaveInimiga.elemento_jquery_enemyArea);
-
+        // Verifica se existe mais de 1 inimigo em campo
         arg.toString().split('') > 1 ? single() : multiple();
 
+        // Cria elementos da(s) nave(s) inimiga(s).
         function single() {
             $(`.__${arg}`).append(NaveInimiga.elemento_jquery_nave)
         }
@@ -43,15 +44,29 @@ class NaveInimiga {
         this.elemento_html_enemyShipbay = document.querySelectorAll(".shipBay")
     }
 
-    static explodir(nave){
+    static explodir(nave) {
+        // Elemento correspondente a nave inimiga a ser destruida
+        var atual = $(".shipBay")[nave].children[0];
+        // Emite som de explosão apenas uma vez se for atingida
+        if (atual.value != 0) {
+            this.audio.volume = 0.1
+            this.audio.play()
+            atual.value = 0
+        }
+
+        console.log(`[#${Jogo.faseAtual}] Nave no quadrante ${nave + 1} atingida.`)
+
+        // Troca de imagem fazendo uma animação de explosão
         var img = 0;
         var intervalo = setInterval(() => {
-            img++
-            $(".shipBay")[nave].children[0].children[0].src = `src/img/boom_${img}.png`
-            // $(".shipBay")[nave].children[0].src = `src/img/boom_${img}`
-            if (img == 8){
-                $(".shipBay")[nave].children[0].remove();
-                clearInterval(intervalo)
+            if (atual) {
+                img++
+                atual.children[0].src = `src/img/boom_${img}.png`
+                // quando terminar a animação, apaga o elemento e para o intervalo.
+                if (img == 8) {
+                    atual.remove();
+                    clearInterval(intervalo)
+                }
             }
         }, 100);
     }
