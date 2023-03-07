@@ -68,6 +68,7 @@ class Jogo {
                 // Tutorial de movimentação
                 Tutorial.criar(1)
                 function handleTutorial1(event) {
+                    // Aguarda input de alguma tecla de movimentação do usuário
                     if (event.keyCode == 37 || event.key == 'w' ||
                         event.keyCode == 38 || event.key == 'a' ||
                         event.keyCode == 39 || event.key == 's' ||
@@ -75,6 +76,7 @@ class Jogo {
                         setTimeout(() => {
                             Jogo.janela.removeEventListener("keydown", handleTutorial1)
                             Tutorial.apagar()
+                            // Quando recebe, ativa movimentação e começa fase 1:
                             Jogo.ativarMovimentacao()
                             Jogo.avancarFase()
                         }, 25);
@@ -83,13 +85,16 @@ class Jogo {
                 Jogo.janela.addEventListener("keydown", handleTutorial1)
                 break;
             case 2:
+                // Tutorial de combate
                 Tutorial.criar(2)
                 Jogo.enableMove = 0
                 function handleTutorial2(event) {
+                    // Aguarda input da tecla [espaço]
                     if (event.keyCode == 32) {
                         setTimeout(() => {
                             Jogo.janela.removeEventListener("keydown", handleTutorial2)
                             Tutorial.apagar()
+                            // Quando recebe, ativa combate
                             Jogo.ativarArmas()
                             Jogo.enableMove = 1;
                         }, 25);
@@ -281,8 +286,10 @@ class Jogo {
     }
 
     static avancarFase() {
+        // Limita o número de fases em 8 e incrementa a cada execução
         Jogo.faseAtual <= 8 ? Jogo.faseAtual++ : Jogo.faseAtual;
         switch (Jogo.faseAtual) {
+            // Switch para escolher a fase atual e informações numéricas das fases.
             case 1:
                 var fase_1 = new Fase(1, '1,2,3,4,5,6,7,8,9', '2,3')
                 break;
