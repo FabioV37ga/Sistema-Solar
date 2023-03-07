@@ -5,7 +5,7 @@ console.log(`[#PRELOAD] iniciado`)
 for (let i = 1; i <= 8; i++) {
     // imagens de explosão
     $(".preload").append($("<img>", { src: `src/img/boom_${i}.png`, class: "boom" }))
-    console.log(`[#PRELOAD] Image: boom_${i}.png ✅`)
+    console.log(`[#PRELOAD] Image: boom_${i}.png ❌`)
 }
 {
     $(".preload").append($("<audio>", { src: `src/sound/boom.wav`, volume: '0', class: "pre_audio" }))
@@ -21,13 +21,12 @@ for (let i = 1; i <= 8; i++) {
 }
 
 
-
 if ($(".boom").length == 8 && $(".pre_audio").length == 5) {
     setTimeout(() => {
         console.clear()
         console.log(`[#PRELOAD] Concluído ✅`)
     }, 2000);
     setTimeout(() => {
-        // $(".preload")[0].remove()
+        $(".preload")[0].remove()
     }, 100);
 }

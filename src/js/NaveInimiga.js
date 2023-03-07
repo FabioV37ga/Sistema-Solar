@@ -15,11 +15,12 @@ class NaveInimiga {
     `;
     static elemento_jquery_nave = `
     <div class="ship enemy">
-        <img src="src/img/ship-enemy.png" alt="">
+        <img src="src/img/ship-enemy.png" value="1">
     </div>`
     static audio = new Audio('src/sound/boom.wav')
     static elemento_html_enemyArea;
     static elemento_html_enemyShipbay;
+    static estado = 1;
 
     static criar(arg) {
         // Cria elementos do Campo inimigo.
@@ -65,7 +66,13 @@ class NaveInimiga {
                 // quando terminar a animação, apaga o elemento e para o intervalo.
                 if (img == 8) {
                     atual.remove();
-                    Jogo.verificaInimigos()
+                    if (this.estado == 1) {
+                        this.estado = 0
+                        Jogo.verificaInimigos()
+                        setTimeout(() => {
+                            this.estado = 1
+                        }, 1500);
+                    }
                     clearInterval(intervalo)
                 }
             }
