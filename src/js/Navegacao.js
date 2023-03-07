@@ -55,47 +55,49 @@ class Navegacao {
     static controlar() {
 
         // ICONE VOLUME
+        var barraDeslizante = this.elemento_html_head_barraVolume;
+        var volumeContainer = this.elemento_html_head_volumeContainer;
         //     → Mostra o range de volume quando mouseover
-        this.elemento_html_head_volumeContainer.addEventListener("mouseover", () => {
-            this.elemento_html_head_barraVolume.style = "display: initial;"
+        volumeContainer.addEventListener("mouseover", () => {
+            barraDeslizante.style = "display: initial;"
         })
         //     → Esconde o range de volume quando mouseover
-        this.elemento_html_head_volumeContainer.addEventListener("mouseout", () => {
-            this.elemento_html_head_barraVolume.style = "display: none;"
+        volumeContainer.addEventListener("mouseout", () => {
+            barraDeslizante.style = "display: none;"
         })
         //     → Coloca função no click do volume
-        this.elemento_html_head_volumeContainer.children[0].addEventListener("click", () => {
+        volumeContainer.children[0].addEventListener("click", () => {
             //          → Alterna entre MUTE e VOL=5, trocando para as imagens respectivas.
             if (window.audioStatus == 1) {
-                this.elemento_html_head_barraVolume.value = 0
+                barraDeslizante.value = 0
                 window.audio.volume = 0;
                 window.audioStatus = 0;
-                this.elemento_html_head_volumeContainer.children[0].children[0].src = "src/img/volume_0.png"
+                volumeContainer.children[0].children[0].src = "src/img/volume_0.png"
                 window.localStorage.setItem('soundtrack_volume', 0)
                 window.localStorage.setItem('soundtrack_volume_pic', "src/img/volume_0.png")
             } else {
-                this.elemento_html_head_barraVolume.value = 5
+                barraDeslizante.value = 5
                 window.audio.volume = 0.05
                 window.audioStatus = 1;
-                this.elemento_html_head_volumeContainer.children[0].children[0].src = "src/img/volume_1.png"
+                volumeContainer.children[0].children[0].src = "src/img/volume_1.png"
             }
         })
 
         // LOCALSTORAGE: Define os valores de volume & aparencia do ultimo uso da página, caso existam.
         var volumeAnterior = window.localStorage.getItem("soundtrack_volume")
-        volumeAnterior != null ? this.elemento_html_head_barraVolume.value = volumeAnterior * 100 : '';
+        volumeAnterior != null ? barraDeslizante.value = volumeAnterior * 100 : '';
         var volumeFotoAnterior = window.localStorage.getItem("soundtrack_volume_pic")
-        volumeFotoAnterior != null ? this.elemento_html_head_volumeContainer.children[0].children[0].src = volumeFotoAnterior : '';
+        volumeFotoAnterior != null ? volumeContainer.children[0].children[0].src = volumeFotoAnterior : '';
 
         //     → Coloca função no range de volume
-        this.elemento_html_head_barraVolume.addEventListener("input", () => {
+        barraDeslizante.addEventListener("input", () => {
             //          → Sempre que o usuário mover o range, faz volume = range.value
-            window.audio.volume = this.elemento_html_head_barraVolume.value / 100
+            window.audio.volume = barraDeslizante.value / 100
             window.localStorage.setItem('soundtrack_volume', window.audio.volume)
             //          → Sessão responsável por trocar as imagens do icone de volume dependendo no volume:
             //          VOL = 0
-            if (this.elemento_html_head_barraVolume.value == 0) {
-                this.elemento_html_head_volumeContainer.children[0].children[0].src = "src/img/volume_0.png"
+            if (barraDeslizante.value == 0) {
+                volumeContainer.children[0].children[0].src = "src/img/volume_0.png"
                 window.localStorage.setItem('soundtrack_volume_pic', "src/img/volume_0.png")
                 window.audioStatus = 0;
             } else {
@@ -103,19 +105,19 @@ class Navegacao {
             }
 
             //          VOL = 1-35
-            if (this.elemento_html_head_barraVolume.value <= 35
-                && this.elemento_html_head_barraVolume.value > 0) {
-                this.elemento_html_head_volumeContainer.children[0].children[0].src = "src/img/volume_1.png"
+            if (barraDeslizante.value <= 35
+                && barraDeslizante.value > 0) {
+                volumeContainer.children[0].children[0].src = "src/img/volume_1.png"
                 window.localStorage.setItem('soundtrack_volume_pic', "src/img/volume_1.png")
                 //          VOL = 36-75
-            } else if (this.elemento_html_head_barraVolume.value > 35
-                && this.elemento_html_head_barraVolume.value <= 75) {
-                this.elemento_html_head_volumeContainer.children[0].children[0].src = "src/img/volume_2.png"
+            } else if (barraDeslizante.value > 35
+                && barraDeslizante.value <= 75) {
+                volumeContainer.children[0].children[0].src = "src/img/volume_2.png"
                 window.localStorage.setItem('soundtrack_volume_pic', "src/img/volume_2.png")
                 //          VOL = 76-100
-            } else if (this.elemento_html_head_barraVolume.value > 75
-                && this.elemento_html_head_barraVolume.value <= 100) {
-                this.elemento_html_head_volumeContainer.children[0].children[0].src = "src/img/volume_3.png"
+            } else if (barraDeslizante.value > 75
+                && barraDeslizante.value <= 100) {
+                volumeContainer.children[0].children[0].src = "src/img/volume_3.png"
                 window.localStorage.setItem('soundtrack_volume_pic', "src/img/volume_3.png")
             }
         })
