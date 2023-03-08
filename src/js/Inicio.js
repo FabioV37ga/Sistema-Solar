@@ -64,12 +64,12 @@ class Inicio {
             Inicio.elemento_html_botao.removeEventListener("click", handleClick)
             button_click = new Audio("src/sound/button-click.mp3");;
             button_click.play()
-            
+
             window.pause = 1;
             setTimeout(() => {
                 Janela.animar(2, "l")
             }, 13);
-            
+
             Inicio.apagar();
         }
         this.elemento_html_botao.addEventListener("click", handleClick)

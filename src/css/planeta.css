@@ -1,0 +1,129 @@
+.planetarea {
+    margin-left: 244px;
+    width: 370px;
+    height: inherit;
+}
+
+.planeta {
+    width: inherit;
+    height: 100%;
+    display: flex;
+    justify-content: left;
+}
+
+.in {
+    animation: planetIn 2s linear;
+}
+
+@keyframes planetIn {
+    0% {
+        margin-left: 460px
+    }
+
+    100% {
+        margin-left: -90px
+    }
+}
+
+.planeta img {
+    width: 50%;
+    margin-left: 460px;
+}
+
+.planeta-info {
+    position: absolute;
+    height: 450px;
+    margin: -450px 0 0 85px;
+    width: 370px;
+    display: flex;
+    align-items: center;
+    font-family: retro_;
+    opacity: 0
+}
+
+.info {
+    width: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.info-pointer {
+    display: flex;
+    height: fit-content;
+    align-items: center;
+}
+
+.pointer-circle {
+    height: 3px;
+    width: 3px;
+    border: 4px rgb(62, 236, 39) solid;
+    border-radius: 100%;
+    background: rgb(62, 236, 39);
+}
+
+.pointer-arrow {
+    height: 3px;
+    width: 100px;
+    background: rgb(62, 236, 39);
+    margin-left: -2px;
+}
+
+.info-box {
+    height: 331px;
+    width: 235px;
+    background: lime;
+    padding: 5px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.info-box * {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.info-title {
+    border: 4px solid black;
+    width: 228px;
+    height: 38px;
+    font-weight: 100;
+}
+
+.info-size {
+    font-size: 0.8em;
+    border: 4px solid black;
+    width: 228px;
+    height: 40px;
+    font-weight: 100;
+}
+
+.info-text {
+    font-size: 0.8em;
+    border: 4px solid black;
+    width: 228px;
+    height: 180px;
+    font-weight: 100;
+    flex-direction: column;
+}
+
+.info-text p {
+    width: 90%;
+    text-align: justify;
+}
+
+.info-continuar {
+    margin: 8px auto;
+    border: 4px solid black;
+    width: 186px;
+    height: 30px;
+    background: transparent;
+    font-family: inherit;
+}
+
+.info-continuar:hover {
+    cursor: pointer;
+    background: black;
+    color: rgb(62, 236, 39);
+}

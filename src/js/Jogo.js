@@ -35,7 +35,7 @@ class Jogo {
     `;
     static elemento_html_jogo;
     static elemento_html_janela;
-
+    static fase;
     static faseAtual = 0;
     static enableMove = 0;
     static moveState_y = 0; // 0 - parado | 1 - subindo | 2 - descendo
@@ -291,19 +291,37 @@ class Jogo {
         switch (Jogo.faseAtual) {
             // Switch para escolher a fase atual e informações numéricas das fases.
             case 1:
-                var fase_1 = new Fase(1, '3,6', '2,3')
+                Jogo.fase = new Fase(1, '3,6', '2,5')
                 break;
             case 2:
-                var fase_2 = new Fase
+                Jogo.fase = new Fase(2, '2,7', '2,5')
+                break;
         }
 
     }
 
-    static verificaInimigos(){
-        if(document.querySelector(".enemy")){
+    static verificaInimigos() {
+        if (document.querySelector(".enemy")) {
 
-        }else{
-            console.log(`[#${Jogo.faseAtual}] Confronto: Todos os inimigos foram eliminados.`)
+        } else {
+            document.querySelector(".enemyArea").remove()
+            Jogo.fase.viajar(2);
+            Jogo.viajar(2)
+
         }
+    }
+
+    static viajar() {
+        Fase.janela = document.querySelector(".janela");
+        var posicaoAtual = parseInt(Fase.janela.style.backgroundPositionX.toString().replace("px", ""))
+        var intervalo = setInterval(() => {
+            if (Fase.progressao == 1) {
+                posicaoAtual--
+                Fase.janela.style = `background-position-x: ${posicaoAtual}px;`
+            } else {
+                clearInterval(intervalo)
+            }
+            // console.log("Avanço atual: " + posicaoAtual)
+        }, 1)
     }
 }

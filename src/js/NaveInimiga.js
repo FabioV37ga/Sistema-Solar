@@ -71,7 +71,7 @@ class NaveInimiga {
                         Jogo.verificaInimigos()
                         setTimeout(() => {
                             this.estado = 1
-                        }, 1500);
+                        }, 100);
                     }
                     clearInterval(intervalo)
                 }

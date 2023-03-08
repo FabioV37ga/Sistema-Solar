@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="src/css/jogo.css">
     <link rel="stylesheet" href="src/css/nave.css">
     <link rel="stylesheet" href="src/css/tutorial.css">
+    <link rel="stylesheet" href="src/css/planeta.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
@@ -21,7 +22,6 @@
 
     <main>
 
-
         <section class="nav-header">
             <div class="left">
                 <a href="" class="nav-header-item home">
@@ -29,7 +29,7 @@
                 </a>
                 <div class="volume-container">
                     <a class="nav-header-item volume">
-                        <img src="src/img/volume_1.png" alt="">
+                        <img src="src/img/volume_0.png" alt="">
                     </a>
                     <input type="range" min="0" max="100" value="5">
                 </div>
@@ -39,30 +39,68 @@
                         src="src/img/git.svg" alt=""></a>
             </div>
         </section>
-        <section class="janela aberta" style="background-position-x: 42px;">
+        <section class="janela aberta" style="background-position-x: -3184px;">
 
 
             <section class="jogo">
+
+
+
+
                 <div class="playarea">
 
-                    <div class="ship ally" style="left: 210px; top: -42px;">
-                        <img src="src/img/ship-ally.png" alt="">
-                    </div>
-                    <div class="tiro"></div>
+                    <div class="ship ally" style="top: -71px;"><img src="src/img/ship-ally.png" alt=""></div>
+                    <div class="gun"></div>
                 </div>
-                <div class="enemyArea">
 
-                    <div class="shipBay">
-                        <div class="ship enemy">
-                            <img src="src/img/ship-enemy.png" alt="">
+
+
+                <div class="planetarea">
+                    <div class="planeta">
+                        <img src="src/planetas/outro/1_mercurio.svg"></svg>
+                    </div>
+
+                    
+                    <div class="planeta-info">
+                        <div class="info">
+                            <div class="info-pointer">
+                                <div class="pointer-circle"></div>
+                                <div class="pointer-arrow"></div>
+                            </div>
+                            <div class="info-box">
+                                <h1 class="info-title">MERCURIO</h1>
+                                <div class="info-size">Tamanho: <br> 100000km</div>
+                                <div class="info-text">
+                                    <h1>Informacoes Gerais</h1>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                                        aliquam nec elit sit amet interdum. Aliquam sed odio justo. Morbi eleifend eros
+                                        sit
+                                        amet rhoncus porta. Vivamus et vulputate nulla. In vehicula tellus nec lorem
+                                        gravida
+                                    </p>
+                                </div>
+                                <button class="info-continuar">Continuar</button>
+                            </div>
                         </div>
                     </div>
+
+
+                </div>
+
+
+
+                <div class="enemyArea">
                     <div class="shipBay __1"></div>
                     <div class="shipBay __2"></div>
-                    <div class="shipBay __3"></div>
+                    <div class="shipBay __3">
+                    </div>
                     <div class="shipBay __4"></div>
                     <div class="shipBay __5"></div>
-                    <div class="shipBay __6"></div>
+                    <div class="shipBay __6">
+                    </div>
+                    <div class="shipBay __7"></div>
+                    <div class="shipBay __8"></div>
+                    <div class="shipBay __9"></div>
                 </div>
             </section>
         </section>

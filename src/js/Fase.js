@@ -4,11 +4,13 @@ class Fase {
     inimigos;
     duracao;
     planeta;
+    estado;
     constructor(numero, inimigos, duracao) {
         this.numero = numero;
         this.inimigos = inimigos.split('').length > 1 ? inimigos.split(",") : inimigos
         this.duracao = duracao.split('').length > 1 ? duracao.split(",") : duracao
         this.planeta = numero;
+        this.estado = 0
         this.iniciar()
     }
 
@@ -17,23 +19,12 @@ class Fase {
         console.log(`[#${this.numero}] Viagem inciada: Planeta anterior → Confronto atual \n`)
         Fase.progressao = 1
         this.viajar(1)
+        Jogo.viajar()
     }
 
     viajar(arg) {
-
-        Fase.janela = document.querySelector(".janela");
-        var posicaoAtual = parseInt(Fase.janela.style.backgroundPositionX.toString().replace("px", ""))
-        var intervalo = setInterval(() => {
-            if (Fase.progressao == 1){
-                posicaoAtual--
-                Fase.janela.style = `background-position-x: ${posicaoAtual}px;`
-            }else{
-                clearInterval(intervalo)
-            }
-            // console.log("Avanço atual: " + posicaoAtual)
-        }, 1);
-
         if (arg == 1) {
+            this.estado = 0
             setTimeout(() => {
                 console.log(`[#${this.numero}] Viagem Finalizada: Planeta anterior → Confronto atual \n`)
 
@@ -51,7 +42,26 @@ class Fase {
                 })
             }, parseInt(this.duracao[0]) * 1000);
         } else {
-            console.log("penis ga")
+            if (this.estado != 0) {
+
+            } else {
+                this.estado = 1
+                // código não consegue chegar aqui
+                console.log(`[#${Jogo.faseAtual}] Confronto: Todos os inimigos foram eliminados.`)
+                console.log(`[#${this.numero}] Viagem Iniciada: Confronto atual → Planeta atual \n`)
+                console.log(`[#${this.numero}] Planeta: planeta criado. \n`)
+                Planeta.criar(Jogo.faseAtual)
+                setTimeout(() => {
+                    console.log(`[#${this.numero}] Planeta: Planeta movendo\n`)
+                    Planeta.mostrar()
+
+                }, parseInt((this.duracao[1]) * 1000) - 2000);
+                setTimeout(() => {
+                    console.log(`[#${this.numero}] Planeta: Planeta centralizado\n`)
+                    console.log(`[#${this.numero}] Viagem Finalizada: Confronto atual → Planeta atual \n`)
+                    Fase.progressao = 0
+                }, parseInt(this.duracao[1]) * 1000);
+            }
         }
     }
 }
