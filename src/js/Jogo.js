@@ -40,6 +40,7 @@ class Jogo {
     static enableMove = 0;
     static moveState_y = 0; // 0 - parado | 1 - subindo | 2 - descendo
     static moveState_x = 0; // 0 - parado | 1 - esquerda | 2 - direita
+    static enableShoot = 1;
 
     static criar() {
         // Cria elemento jquery
@@ -273,8 +274,10 @@ class Jogo {
     static ativarArmas() {
         Jogo.janela.addEventListener("keydown", function (e) {
             if (e.keyCode == 32 && Jogo.enableMove == 1 && (Jogo.shootState == 0 || Jogo.shootState == null)) {
-                Nave.shootState = 1
-                Nave.atirar(1)
+                if (Jogo.enableShoot == 1) {
+                    Nave.shootState = 1
+                    Nave.atirar(1)
+                }
             }
         })
 
@@ -287,14 +290,15 @@ class Jogo {
 
     static avancarFase() {
         // Limita o número de fases em 8 e incrementa a cada execução
+        Jogo.enableShoot = 1;
         Jogo.faseAtual <= 8 ? Jogo.faseAtual++ : Jogo.faseAtual;
         switch (Jogo.faseAtual) {
             // Switch para escolher a fase atual e informações numéricas das fases.
             case 1:
-                Jogo.fase = new Fase(1, '3,6', '2,5')
+                Jogo.fase = new Fase(1, '3,6', '2,3')
                 break;
             case 2:
-                Jogo.fase = new Fase(2, '2,7', '2,5')
+                Jogo.fase = new Fase(2, '2,7', '2,3')
                 break;
         }
 
@@ -305,9 +309,9 @@ class Jogo {
 
         } else {
             document.querySelector(".enemyArea").remove()
+            Jogo.enableShoot = 0;
             Jogo.fase.viajar(2);
-            Jogo.viajar(2)
-
+            Jogo.viajar()
         }
     }
 

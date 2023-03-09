@@ -50,7 +50,7 @@ class Fase {
                 console.log(`[#${Jogo.faseAtual}] Confronto: Todos os inimigos foram eliminados.`)
                 console.log(`[#${this.numero}] Viagem Iniciada: Confronto atual → Planeta atual \n`)
                 console.log(`[#${this.numero}] Planeta: planeta criado. \n`)
-                Planeta.criar(Jogo.faseAtual)
+                Planeta.criar(Jogo.faseAtual, 1)
                 setTimeout(() => {
                     console.log(`[#${this.numero}] Planeta: Planeta movendo\n`)
                     Planeta.mostrar()
