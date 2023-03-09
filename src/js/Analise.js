@@ -25,7 +25,10 @@ class Analise {
             function keyHandle(e) {
                 if (e.keyCode == 32) {
                     $(".analisar")[0].remove()
+                    var audio = new Audio('src/sound/scan.mp3')
                     Analise.criar(2)
+                    audio.volume = 0.5;
+                    audio.play()
                     document.querySelector("body").removeEventListener("keydown", keyHandle)
                 }
             }
@@ -34,10 +37,10 @@ class Analise {
         } else {
             console.log(`[#${Jogo.faseAtual}] Analise iniciada`)
             function animationHandle() {
-                Planeta.criar(2)
+                Planeta.criar(Jogo.faseAtual, 2)
                 document.querySelector(".barra-analise").removeEventListener("animationend", animationHandle)
                 $(".barra-analise")[0].remove()
-                
+
                 setTimeout(() => {
                     Planeta.controlar()
                 }, 500);

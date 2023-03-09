@@ -59,6 +59,7 @@ class Planeta {
     static criar(faseAtual, parte) {
         const planeta = JSON.parse(Planeta.planetas)
         var planetaAtual = planeta.find(planeta => planeta.id === faseAtual)
+        console.log(planetaAtual)
         // Planeta.nome = nome;
         // Planeta.tamanho = tamanho;
         // Planeta.texto = texto;
