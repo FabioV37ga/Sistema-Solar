@@ -298,7 +298,10 @@ class Jogo {
                 Jogo.fase = new Fase(1, '3,6', '2,3')
                 break;
             case 2:
-                Jogo.fase = new Fase(2, '2,7', '2,3')
+                Jogo.fase = new Fase(2, '4,5', '2,3')
+                break;
+            case 3:
+                Jogo.fase = new Fase(3, '4,5,6', '2,3')
                 break;
         }
 

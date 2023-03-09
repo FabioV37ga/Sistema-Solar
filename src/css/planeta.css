@@ -61,6 +61,7 @@
     animation: .3s point cubic-bezier(0.47, 0, 0.75, 0.72);
 }
 
+
 @keyframes point {
     0% {
         border: 0px rgb(62, 236, 39) solid;
@@ -68,6 +69,22 @@
 
     100% {
         border: 4px rgb(62, 236, 39) solid;
+    }
+}
+
+.close-circle {
+    animation: closeCircle 3s;
+}
+
+@keyframes closeCircle {
+    0%{
+        border: 4px rgb(62, 236, 39) solid;
+    }
+    66%{
+        border: 4px rgb(62, 236, 39) solid;
+    }
+    100% {
+        border: 0px rgb(62, 236, 39) solid;
     }
 }
 
@@ -90,6 +107,24 @@
 
     100% {
         width: 100px
+    }
+}
+
+.close-arrow{
+    animation: 3s closeArrow;
+}
+
+@keyframes closeArrow {
+    0% {
+        width: 100px
+    }
+
+    33% {
+        width: 100px
+    }
+
+    100% {
+        width: 0
     }
 }
 
@@ -119,6 +154,25 @@
         padding: 5px;
     }
 
+}
+
+.close-box{
+    animation: 3s closeBox
+}
+
+@keyframes closeBox {
+    0%{
+        padding: 235px;
+        padding: 5px;
+    }
+    33%{
+        width: 0px;
+        padding: 0px;
+    }
+    100%{
+        width: 0px;
+        padding: 0px;
+    }
 }
 
 .info-box>* {
@@ -209,13 +263,15 @@
 }
 
 @keyframes barra-analise {
-    0%{
+    0% {
         margin-top: -4px;
     }
-    50%{
+
+    50% {
         margin-top: 450px
     }
-    100%{
+
+    100% {
         margin-top: -10px;
     }
 }

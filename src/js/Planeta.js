@@ -103,18 +103,40 @@ class Planeta {
         })
         $(".planeta")[0].children[0].classList.add("in")
     }
-    
+
     static controlar() {
         // TODO: Esse método vai 1. criar botão analizar, 2. mostrar caixas de texto, 3. permitir avanço de fase
         // TODO: Limpar eventlister depois do primeiro uso
-        // this.criar(Jogo.faseAtual, 2)
-        // document.querySelector("body").addEventListener("keydown", function (e) {
-        //     if (e.keyCode == 80) {
-        //         console.log("controlar2")
-        //         document.querySelector(".planetarea").remove()
-        //         Jogo.avancarFase()
-        //     }
-        // })
-    }
+        document.querySelector(".info-continuar").addEventListener("click", () => {
+            $(".pointer-circle")[0].classList.add("close-circle")
+            $(".pointer-arrow")[0].classList.add("close-arrow")
+            $(".info-box")[0].classList.add("close-box")
+            $(".info-box")[0].children[0].style = "opacity: 0"
+            $(".info-box")[0].children[1].style = "opacity: 0"
+            $(".info-box")[0].children[2].style = "opacity: 0"
+            $(".info-continuar")[0].style = "opacity: 0"
+        })
 
+        function animationHandle() {
+            console.log("apagar e proximo")
+            document.querySelector(".planeta-info").remove()
+            Planeta.esconder()
+        }
+        document.querySelector(".pointer-circle").addEventListener("animationend", animationHandle)
+    }
+    
+    static esconder() {
+        Fase.progressao = 1
+        Jogo.viajar()
+        var margin = -90
+        var intervalo = setInterval(() => {
+            margin--
+            document.querySelector(".planeta").children[0].style = `margin-left: ${margin}px`
+            if (margin == -540){
+                clearInterval(intervalo)
+                Jogo.avancarFase()
+                document.querySelector(".planetarea").remove()
+            }
+        }, 1);
+    }
 }

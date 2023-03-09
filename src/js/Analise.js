@@ -37,6 +37,11 @@ class Analise {
                 Planeta.criar(2)
                 document.querySelector(".barra-analise").removeEventListener("animationend", animationHandle)
                 $(".barra-analise")[0].remove()
+                
+                setTimeout(() => {
+                    Planeta.controlar()
+                }, 500);
+
             }
             document.querySelector(".barra-analise").addEventListener("animationend", animationHandle)
         }
