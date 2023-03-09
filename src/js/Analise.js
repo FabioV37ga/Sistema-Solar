@@ -32,6 +32,7 @@ class Analise {
             document.querySelector("body").addEventListener("keydown", keyHandle)
 
         } else {
+            console.log(`[#${Jogo.faseAtual}] Analise iniciada`)
             function animationHandle() {
                 Planeta.criar(2)
                 document.querySelector(".barra-analise").removeEventListener("animationend", animationHandle)
