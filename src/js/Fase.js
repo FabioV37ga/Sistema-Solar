@@ -15,8 +15,8 @@ class Fase {
     }
 
     iniciar() {
-        console.log(`[#${Fase.faseAtual}] Fase iniciada. \n`)
-        console.log(`[#${Fase.faseAtual}] Viagem inciada: Planeta anterior → Confronto atual \n`)
+        console.log(`[#${Jogo.faseAtual}] Fase iniciada. \n`)
+        console.log(`[#${Jogo.faseAtual}] Viagem inciada: Planeta anterior → Confronto atual \n`)
         Fase.progressao = 1
         this.viajar(1)
         Jogo.viajar()
@@ -26,11 +26,11 @@ class Fase {
         if (arg == 1) {
             this.estado = 0
             setTimeout(() => {
-                console.log(`[#${Fase.faseAtual}] Viagem Finalizada: Planeta anterior → Confronto atual \n`)
+                console.log(`[#${Jogo.faseAtual}] Viagem Finalizada: Planeta anterior → Confronto atual \n`)
 
                 NaveInimiga.criar(this.inimigos)
 
-                console.log(`[#${Fase.faseAtual}] Confronto iniciado\n`)
+                console.log(`[#${Jogo.faseAtual}] Confronto iniciado\n`)
 
                 document.querySelector(".enemyArea").addEventListener("animationend", () => {
                     if (this.numero == 1) {
