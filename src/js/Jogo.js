@@ -303,6 +303,21 @@ class Jogo {
             case 3:
                 Jogo.fase = new Fase(3, '4,5,6', '2,3')
                 break;
+            case 4:
+                Jogo.fase = new Fase(3, '3,4,6,7', '2,4')
+                break;
+            case 5:
+                Jogo.fase = new Fase(3, '3,4,5,6,7', '2,4')
+                break;
+            case 6:
+                Jogo.fase = new Fase(3, '2,3,5,7,8', '2,4')
+                break;
+            case 7:
+                Jogo.fase = new Fase(3, '1,2,5,8,9', '2,4')
+                break;
+            case 8:
+                Jogo.fase = new Fase(3, '2,3,4,5,6,7,8', '2,5')
+                break;
         }
 
     }

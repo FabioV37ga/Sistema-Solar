@@ -4,49 +4,49 @@ class Planeta {
         {
             "id": 1,
             "nome": "mercurio",
-            "tamanho": "nullkm",
+            "tamanho": "null km",
             "texto": "Baita planeta. nota 6"
         },
         {
             "id": 2,
             "nome": "venus",
-            "tamanho": "nullkm",
+            "tamanho": "null km",
             "texto": "Baita planeta. nota 6"
         },
         {
             "id": 3,
             "nome": "terra",
-            "tamanho": "nullkm",
+            "tamanho": "null km",
             "texto": "Baita planeta. nota 6"
         },
         {
             "id": 4,
-            "nome": "terra",
-            "tamanho": "nullkm",
+            "nome": "marte",
+            "tamanho": "null km",
             "texto": "Baita planeta. nota 6"
         },
         {
             "id": 5,
-            "nome": "terra",
-            "tamanho": "nullkm",
+            "nome": "jupiter",
+            "tamanho": "null km",
             "texto": "Baita planeta. nota 6"
         },
         {
             "id": 6,
-            "nome": "terra",
-            "tamanho": "nullkm",
+            "nome": "saturno",
+            "tamanho": "null km",
             "texto": "Baita planeta. nota 6"
         },
         {
             "id": 7,
-            "nome": "terra",
-            "tamanho": "nullkm",
+            "nome": "urano",
+            "tamanho": "null km",
             "texto": "Baita planeta. nota 6"
         },
         {
             "id": 8,
-            "nome": "terra",
-            "tamanho": "nullkm",
+            "nome": "netuno",
+            "tamanho": "null km",
             "texto": "Baita planeta. nota 6"
         }
     ]`
