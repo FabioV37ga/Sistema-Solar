@@ -35,9 +35,11 @@ class Fase {
                 document.querySelector(".enemyArea").addEventListener("animationend", () => {
                     if (this.numero == 1) {
                         Jogo.tutorial(2)
-                        // this.viajar(2)
+                    } else if (Jogo.faseAtual == 2) {
+                        // TODO: Tutorial de tiro inimigo
+                        // fim do tutorial: NaveInimiga.ativar()
                     } else {
-                        // NaveInimiga.ativar()
+                        // TODO: NaveInimiga.ativar()
                     }
                 })
             }, parseInt(this.duracao[0]) * 1000);
@@ -46,7 +48,6 @@ class Fase {
 
             } else {
                 this.estado = 1
-                // código não consegue chegar aqui
                 console.log(`[#${Jogo.faseAtual}] Confronto: Todos os inimigos foram eliminados.`)
                 console.log(`[#${Jogo.faseAtual}] Viagem Iniciada: Confronto atual → Planeta atual \n`)
                 console.log(`[#${Jogo.faseAtual}] Planeta: planeta criado. \n`)
@@ -64,4 +65,5 @@ class Fase {
             }
         }
     }
+
 }

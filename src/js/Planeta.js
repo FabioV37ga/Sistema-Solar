@@ -59,10 +59,12 @@ class Planeta {
     static criar(faseAtual, parte) {
         const planeta = JSON.parse(Planeta.planetas)
         var planetaAtual = planeta.find(planeta => planeta.id === faseAtual)
-        console.log(planetaAtual)
+        // console.log(planetaAtual)
         // Planeta.nome = nome;
         // Planeta.tamanho = tamanho;
         // Planeta.texto = texto;
+
+        // Cria area e imagem do planeta
         if (parte == 1) {
             $(".jogo").append(`
                 <div class="planetarea">
@@ -71,7 +73,9 @@ class Planeta {
                     </div>
                 </div>
              `)
-        } else {
+        }
+        // Cria aba de informações do planeta
+        else {
             $(".planetarea").append(`
                 <div class="planeta-info">
                     <div class="info">
@@ -95,6 +99,7 @@ class Planeta {
         }
     }
 
+    // Depois que o planeta chega ao centro da tela, libera opção de scan (Analise.criar(1))
     static mostrar() {
         $(".planeta")[0].children[0].addEventListener("animationend", () => {
             $(".planeta")[0].children[0].style.marginLeft = "-90px"
@@ -105,9 +110,9 @@ class Planeta {
         $(".planeta")[0].children[0].classList.add("in")
     }
 
+    // Controla o funcionamento do botão e suas interações
     static controlar() {
-        // TODO: Esse método vai 1. criar botão analizar, 2. mostrar caixas de texto, 3. permitir avanço de fase
-        // TODO: Limpar eventlister depois do primeiro uso
+        // Quando o botão continuar for clicado, faz uma animação fechando a caixa de informações
         document.querySelector(".info-continuar").addEventListener("click", () => {
             $(".pointer-circle")[0].classList.add("close-circle")
             $(".pointer-arrow")[0].classList.add("close-arrow")
@@ -118,14 +123,16 @@ class Planeta {
             $(".info-continuar")[0].style = "opacity: 0"
         })
 
+        // Quando a animação de fechar termina, apaga o elemento e move o planeta p/ esquerda com esconder().
         function animationHandle() {
-            console.log("apagar e proximo")
             document.querySelector(".planeta-info").remove()
             Planeta.esconder()
         }
         document.querySelector(".pointer-circle").addEventListener("animationend", animationHandle)
     }
-    
+
+    // Usa um intervalo de 1ms para adicionar margin-left ao planeta até que ele suma da tela.
+    // Quando sumir, avança a fase.
     static esconder() {
         Fase.progressao = 1
         Jogo.viajar()
@@ -133,7 +140,8 @@ class Planeta {
         var intervalo = setInterval(() => {
             margin--
             document.querySelector(".planeta").children[0].style = `margin-left: ${margin}px`
-            if (margin == -540){
+            // Quando planeta sair de enquadramento...
+            if (margin == -540) {
                 clearInterval(intervalo)
                 Jogo.avancarFase()
                 document.querySelector(".planetarea").remove()
