@@ -20,6 +20,7 @@ class Janela {
         </section>`;
     static elemento_html_janela;
     static posicaoBkg = 0;
+    
     static criar() {
         $("main").append(this.elemento_jquery);
         Janela.selecionar();
