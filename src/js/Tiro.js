@@ -92,7 +92,7 @@ class Tiro {
     }
 
     // Método utilizado para atribuir essa instância de Tiro a um elemento .tiro no html.
-    // Utiliza o ID da nave.
+    // Utiliza o ID da nave criada no html.
     selecionar() {
         this.elemento_html = document.querySelectorAll(".tiro")
         for (let i = 0; i <= this.elemento_html.length - 1; i++) {

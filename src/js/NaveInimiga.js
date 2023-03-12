@@ -1,3 +1,21 @@
+/*
+Classe NaveInimiga
+    - Essa classe é responsável por criar, controlar, animar e apagar os elementos que constituem as naves inimigas
+
+Índice
+    1. Atributos
+        1.1 Elemento_jquery_enemyarea → String dos elementos a serem criados '.enemyArea'
+        1.2 elemento_jquery_nave → String dos elementos a serem criados '.ship.enemy'
+        1.3 audioExplosao → Audio da explosão da nave
+        1.4 elementos_html_* → Atributos que selecionam os elementos criados anteriormente
+        1.5 estado → Essa variável determina se a nave está ativa/viva. 0/1 - desligado/ligado
+    2. Métodos
+        2.1 criar() →  
+            2.1.1 function single() →
+            2.1.2 function multiple() →
+        2.2 selecionar() →
+        2.3 explodir() →
+*/
 class NaveInimiga {
     static ship_placeholder;
     static elemento_jquery_enemyArea = `
@@ -59,6 +77,7 @@ class NaveInimiga {
 
         // Troca de imagem fazendo uma animação de explosão
         var img = 0;
+        // Em resumo, faz um loop com intervalo que da a impressão de animação
         var intervalo = setInterval(() => {
             if (atual) {
                 img++

@@ -1,3 +1,22 @@
+/*
+Classe Planeta
+    - Essa classe é responsável por criar, controlar, animar e apagar os elementos do planeta.
+    - Também é responsável por criar, carregar e apagar aba de informações dos planetas.
+
+Índice
+    1. Atributos
+        1.1 ID →
+        1.2 Nome →
+        1.3 Tamanho →
+        1.4 Texto →
+    2. Métodos
+        2.1 criar(parte) →
+            2.1.1 (1) →
+            2.1.2 (2) →
+        2.2 mostrar() →
+        2.3 animar() →
+        2.4 esconder() →
+*/
 class Planeta {
     static planetas = `
     [
@@ -59,11 +78,6 @@ class Planeta {
     static criar(faseAtual, parte) {
         const planeta = JSON.parse(Planeta.planetas)
         var planetaAtual = planeta.find(planeta => planeta.id === faseAtual)
-        // console.log(planetaAtual)
-        // Planeta.nome = nome;
-        // Planeta.tamanho = tamanho;
-        // Planeta.texto = texto;
-
         // Cria area e imagem do planeta
         if (parte == 1) {
             $(".jogo").append(`
@@ -142,8 +156,11 @@ class Planeta {
             document.querySelector(".planeta").children[0].style = `margin-left: ${margin}px`
             // Quando planeta sair de enquadramento...
             if (margin == -540) {
+                // Para o loop
                 clearInterval(intervalo)
+                // Avança a fase
                 Jogo.avancarFase()
+                // Remove a sessão do planeta
                 document.querySelector(".planetarea").remove()
             }
         }, 1);
