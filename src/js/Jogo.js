@@ -360,7 +360,6 @@ class Jogo {
                 // Se o progresso for desligado, para o loop
                 clearInterval(intervalo)
             }
-            // console.log("Avanço atual: " + posicaoAtual)
         }, 1)
     }
 }
