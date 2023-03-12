@@ -35,12 +35,12 @@ class Jogo {
     `;
     static elemento_html_jogo;
     static elemento_html_janela;
-    static fase;
-    static faseAtual = 0;
-    static enableMove = 0;
+    static fase; // Guarda informações da fase atual (inimigos, tempo)
+    static faseAtual = 0; // Número da fase atual
+    static enableMove = 0; // Ativar movimentação | 0 - desligado | 1 - ligado 
     static moveState_y = 0; // 0 - parado | 1 - subindo | 2 - descendo
     static moveState_x = 0; // 0 - parado | 1 - esquerda | 2 - direita
-    static enableShoot = 1;
+    static enableShoot = 1; // Ativar arma | 0 - desligado | 1 - ligado
 
     static criar() {
         // Cria elemento jquery
@@ -272,6 +272,13 @@ class Jogo {
     }
 
     static ativarArmas() {
+        // Ativa a função de atirar
+
+        // Em resumo, existem 2 funções: 
+        //      1 para quando o usuário pressiona o botão, que faz a nave atirar
+        //      2 Para quando o usuário solta o botão, que faz a nave parar de atirar
+        // Um depende do outro, e a nave não para de atirar até que o usuário solte o botão
+        
         Jogo.janela.addEventListener("keydown", function (e) {
             if (e.keyCode == 32 && Jogo.enableMove == 1 && (Jogo.shootState == 0 || Jogo.shootState == null)) {
                 if (Jogo.enableShoot == 1) {
@@ -294,6 +301,7 @@ class Jogo {
         Jogo.faseAtual <= 8 ? Jogo.faseAtual++ : Jogo.faseAtual;
         switch (Jogo.faseAtual) {
             // Switch para escolher a fase atual e informações numéricas das fases.
+            // Formato: Fase( numeroDaFase , [Inimigo1 → inimigo8], [tempo1 ; tempo 2] )
             case 1:
                 Jogo.fase = new Fase(1, '3,6', '2,3')
                 break;
@@ -323,24 +331,33 @@ class Jogo {
     }
 
     static verificaInimigos() {
+        // Se não houver mais elementos com classe .enemy
         if (document.querySelector(".enemy")) {
-
         } else {
+            // Apaga a area inimiga
             document.querySelector(".enemyArea").remove()
+            // Desativa armas
             Jogo.enableShoot = 0;
+            // Viaja para o próximo estágio da fase
             Jogo.fase.viajar(2);
+            // Anima a progressão no background
             Jogo.viajar()
         }
     }
 
     static viajar() {
         Fase.janela = document.querySelector(".janela");
+        // Pega a posição atual do background
         var posicaoAtual = parseInt(Fase.janela.style.backgroundPositionX.toString().replace("px", ""))
+        // Loop com intervalo
         var intervalo = setInterval(() => {
+            // Variavel para desligar o loop
             if (Fase.progressao == 1) {
+                // Move o background a cada execução do loop
                 posicaoAtual--
                 Fase.janela.style = `background-position-x: ${posicaoAtual}px;`
             } else {
+                // Se o progresso for desligado, para o loop
                 clearInterval(intervalo)
             }
             // console.log("Avanço atual: " + posicaoAtual)
