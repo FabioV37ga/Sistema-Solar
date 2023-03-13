@@ -108,6 +108,25 @@ class Jogo {
                 }
                 Jogo.janela.addEventListener("keydown", handleTutorial2)
                 break;
+            case 3:
+                Tutorial.criar(3)
+                Jogo.enableMove = 0
+                Jogo.enableShoot = 0
+                function handleTutorial3() {
+                    // Aguarda input de alguma tecla do usuário
+                    setTimeout(() => {
+                        Jogo.janela.removeEventListener("keydown", handleTutorial3)
+                        Tutorial.apagar()
+                        Jogo.enableMove = 1
+                        Jogo.enableShoot = 1
+                    }, 15);
+                    // Quando recebe, ativa movimentação e começa fase 1:
+                    NaveInimiga.ativar()
+                }
+                setTimeout(() => {
+                    Jogo.janela.addEventListener("keydown", handleTutorial3)
+                }, 180);
+                break;
         }
     }
 
