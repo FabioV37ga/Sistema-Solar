@@ -9,7 +9,7 @@ Classe Jogo
         1.3 elemento_html_janela → elemento html .playArea
         1.4 faseAtual → Armazena fase atual.
         1.5 enableMove → Alterna entre movimento da dave ativado e desativado. (0 , 1)
-        1.6/7 moveState_x/y → Armazena informação do estado do movimento da nave de x e y.
+        1.6/7 moveState_x/y → Armazena informação do estado de movimento dos eixos x e y da nave.
     2 Métodos
         2.1 criar(tipo) → Cria elementos 'elementos_jquery_jogo', chama 'selecionar()' e chama 'nave.criar()'
         2.2 selecionar() → Atribui os elementos html aos atributos do tipo '_html'
@@ -24,7 +24,12 @@ Classe Jogo
                                    eixo respectivo. Existem também outras regras p/ fazer  um "overlapse" da direção
                                    baseado nas teclas pressionadas e soltas;
         2.6 avancarFase() → Adiciona +1 na fase atual (inicializada como 0). Também cria uma instância da 
-                          classe Fase com informações da fase atual.
+                            classe Fase com informações da fase atual.
+        2.7 verificaInimigos() → Verifica se existem elementos na página correspondentes a inimigos, caso não existam,
+                                 avança estágio da fase p/ planeta
+        2.8 viajar() → Anima o background. Efeito visual: Não confundir com Fase.viajar()*
+        2.9 finalizar() → Quando terminar a lista de planetas a serem explorados, esse método finaliza o jogo com 
+                          uma animaçao
 */
 class Jogo {
     static elemento_jquery_jogo = `
@@ -77,10 +82,10 @@ class Jogo {
                         setTimeout(() => {
                             Jogo.janela.removeEventListener("keydown", handleTutorial1)
                             Tutorial.apagar()
-                            // Quando recebe, ativa movimentação e começa fase 1:
-                            Jogo.ativarMovimentacao()
-                            Jogo.avancarFase()
-                        }, 25);
+                        }, 15);
+                        // Quando recebe, ativa movimentação e começa fase 1:
+                        Jogo.ativarMovimentacao()
+                        Jogo.avancarFase()
                     }
                 }
                 Jogo.janela.addEventListener("keydown", handleTutorial1)
@@ -200,7 +205,7 @@ class Jogo {
                 if (event.keyCode == direita || event.key == 'd') {
                     // Se não estiver se movimentando
                     if (Jogo.moveState_x == 0) {
-                        // esquerda
+                        // Direita
                         setTimeout(() => {
                             Jogo.moveState_x = 1
                             Nave.mover_x(Jogo.moveState_x)
@@ -208,9 +213,10 @@ class Jogo {
                     } else if (Jogo.moveState_x == 1) {
                         // trava execução multipla enquanto segura
                     } else if (Jogo.moveState_x == 2) {
-                        // Se estiver direita, para e esquerda
+                        // Se estiver esquerda, para...
                         Jogo.moveState_x = 0;
                         Nave.mover_x(Jogo.moveState_x)
+                        // e direita
                         setTimeout(() => {
                             Jogo.moveState_x = 1;
                             Nave.mover_x(Jogo.moveState_x)
@@ -221,7 +227,7 @@ class Jogo {
                 else if (event.keyCode == esquerda || event.key == 'a') {
                     // Se não estiver se movimentando
                     if (Jogo.moveState_x == 0) {
-                        // direita
+                        // esquerda
                         setTimeout(() => {
                             Jogo.moveState_x = 2
                             Nave.mover_x(Jogo.moveState_x)
@@ -229,9 +235,10 @@ class Jogo {
                     } else if (Jogo.moveState_x == 2) {
                         // trava execução multipla enquanto segura
                     } else if (Jogo.moveState_x == 1) {
-                        // Se estiver esquerda, para e direita
+                        // Se estiver direita, para...
                         Jogo.moveState_x = 0;
                         Nave.mover_x(Jogo.moveState_x)
+                        // e direita
                         setTimeout(() => {
                             Jogo.moveState_x = 2;
                             Nave.mover_x(Jogo.moveState_x)
@@ -278,7 +285,7 @@ class Jogo {
         //      1 para quando o usuário pressiona o botão, que faz a nave atirar
         //      2 Para quando o usuário solta o botão, que faz a nave parar de atirar
         // Um depende do outro, e a nave não para de atirar até que o usuário solte o botão
-        
+
         Jogo.janela.addEventListener("keydown", function (e) {
             if (e.keyCode == 32 && Jogo.enableMove == 1 && (Jogo.shootState == 0 || Jogo.shootState == null)) {
                 if (Jogo.enableShoot == 1) {
@@ -298,7 +305,7 @@ class Jogo {
     static avancarFase() {
         // Limita o número de fases em 8 e incrementa a cada execução
         Jogo.enableShoot = 1;
-        Jogo.faseAtual <= 8 ? Jogo.faseAtual++ : Jogo.faseAtual;
+        Jogo.faseAtual <= 9 ? Jogo.faseAtual++ : Jogo.faseAtual;
         switch (Jogo.faseAtual) {
             // Switch para escolher a fase atual e informações numéricas das fases.
             // Formato: Fase( numeroDaFase , [Inimigo1 → inimigo8], [tempo1 ; tempo 2] )
@@ -325,6 +332,9 @@ class Jogo {
                 break;
             case 8:
                 Jogo.fase = new Fase(3, '2,3,4,5,6,7,8', '2,5')
+                break;
+            case 9:
+                console.log("Fim de jogo")
                 break;
         }
 
