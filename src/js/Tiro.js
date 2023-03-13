@@ -1,6 +1,27 @@
+/*
+classe Tiro
+    - Uma instância dessa classe é criada a cada tiro que a nave aliada executa.
+    - Cada uma dessas instâncias fica relacionada com seu respectivo elemento html.
+Índice
+    1. Atributos
+        1.1 static elemento_jquery_tiro → Div.tiro a ser criada
+        1.2 static id → ID global, salvo independente da instância atual
+        1.3 static audio → Audio do tiro
+        1.4 id → ID da instância
+        1.5 posicao → Posição que o tiro é criado
+        1.6 x → Posição no eixo X do tiro
+        1.7 y →  Posição no eixo Y do tiro
+        1.8 elemento_html → Elemento html referente a instância atual de tiro
+    2. Métodos
+        2.1 criar() → Cria elemento de tiro baseado na posição atual da Nave aliada
+            2.1.1 function verificaTiro() → Verica se o Y do tiro criado agora é compatível com a posição de uma
+                                            nave inimiga, assim, quando o X do tiro for igual a posição x da nave 
+                                            inimiga, ela irá explodir.
+        2.2 selecionar() → Método utilizado para atribuir o elemento criado por essa classe a uma variavel, fazendo um link
+                           entre a instância e um elemento no documento.
+*/
 class Tiro {
     static elemento_jquery_tiro = $('<div>', { class: "tiro" })
-    static atirando = 0;
     static id = 0;
     static audio = new Audio("src/sound/shoot.mp3");
     id;
