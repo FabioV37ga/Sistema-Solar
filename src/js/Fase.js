@@ -67,10 +67,11 @@ class Fase {
                         else if (Jogo.faseAtual == 2) {
                             // TODO: Tutorial de tiro inimigo
                             // fim do tutorial: NaveInimiga.ativar()
+                            Jogo.tutorial(3)
                         }
                         // Fase 3+: Apenas ativa nave inimiga
                         else {
-                            // TODO: NaveInimiga.ativar()
+                            NaveInimiga.ativar()
                         }
                     })
                 }, parseInt(this.duracao[0]) * 1000);
