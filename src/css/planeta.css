@@ -175,6 +175,11 @@
     }
 }
 
+@font-face {
+    font-family: vcr_;
+    src: url("../VCR_OSD_MONO.ttf");
+}
+
 .info-box>* {
     justify-content: center;
     display: flex;
@@ -182,6 +187,7 @@
     margin-bottom: 5px;
     border: 4px solid black;
     animation: 3s infobox-content linear;
+    font-family: vcr_;
 }
 
 @keyframes infobox-content {
@@ -210,6 +216,7 @@
     height: 40px;
     font-weight: 100;
 }
+
 
 .info-text {
     font-size: 0.8em;
