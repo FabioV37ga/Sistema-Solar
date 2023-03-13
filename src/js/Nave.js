@@ -1,3 +1,25 @@
+/*
+classe Nave
+    - Essa classe é responsável por criar, mover, animar e destruir a nave ALIADA
+Índice
+    1. Atributos
+        1.1 elemento_jquery → String com elementos da nave a ser criada
+        1.2/3 elementos_html → Elementos html atribuidos as variaveis do tipo '_html'
+        1.4 statusX → Estado de movimento no eixo X (0 → desligado | 1 → ligado)
+        1.5 statusY → Estado de movimento no eixo Y (0 → desligado | 1 → ligado)
+        1.6 x → Posição atual do eixo X
+        1.7 y → Posição atual do eixo Y
+        1.8 shootCooldown → Recarga do tiro (0 → Não está em recarga | 1 → Está em recarga)
+        1.9 shootState → Nave está atirando (0 → false | 1 → true)
+    2. Métodos
+        2.1 criar() → Cria elementos da classe nave
+        2.2 selecionar() → Seleciona e atribui elementos
+        2.3 controlar() → Inicia o jogo a primeira vez que a nave for criada
+        2.4 mover_X() → Move a nave no eixo X
+        2.5 mover_y() → Move a nave no eixo Y
+        2.6 atirar() → Faz a nave atirar
+        2.7 destruir() → Destroi e chama reposição da nave
+*/
 class Nave {
     static elemento_jquery = `
     <div class = "ship ally"><img src="src/img/ship-ally.png" alt=""></div>
@@ -7,8 +29,8 @@ class Nave {
     static elemento_html_playArea;
     static elemento_html_nave;
     // Elementos lógicos
-    static statusY = 0;
     static statusX = 0;
+    static statusY = 0;
     static x = 209;
     static y = 0;
     static shootCooldown = 0;
@@ -25,50 +47,12 @@ class Nave {
 
     static controlar() {
         this.elemento_html_nave.addEventListener("animationend", () => {
-            Jogo.iniciar()
+            if (Jogo.faseAtual == 0){
+                Jogo.iniciar()
+            }else{
+                // TODO: Ativar movimentação da nave e adicionar classe de blink
+            }
         });
-    }
-
-    static mover_y(direcao) {
-
-        // Direções: 0 - Parado | 1 - Cima | 2 - Baixo
-
-        // Parar eixo Y
-        if (direcao == 0) {
-            Nave.statusY = 0;
-        }
-        // Mover eixo Y
-        else if (direcao > 0) {
-            Nave.statusY = 1;
-            anima(direcao)
-
-        }
-
-        // Inicia animação
-        function anima() {
-            var intervalo = setInterval(() => {
-                // Para a animação se statusY = 0
-                if (Nave.statusY == 0) {
-                    clearInterval(intervalo)
-                } else {
-                    // Se a direção for 1, move para cima
-                    if (direcao == 1) {
-                        if (Nave.y > -215) {
-                            Nave.y--
-                            Nave.elemento_html_nave.style.top = `${Nave.y}px`
-                        }
-                    }
-                    // Se a direção for 2, move para baixo
-                    else if (direcao == 2) {
-                        if (Nave.y < 215) {
-                            Nave.y++
-                            Nave.elemento_html_nave.style.top = `${Nave.y}px`
-                        }
-                    }
-                }
-            }, 1);
-        }
-
     }
 
     static mover_x(direcao) {
@@ -113,17 +97,66 @@ class Nave {
         }
     }
 
+    static mover_y(direcao) {
+
+        // Direções: 0 - Parado | 1 - Cima | 2 - Baixo
+
+        // Parar eixo Y
+        if (direcao == 0) {
+            Nave.statusY = 0;
+        }
+        // Mover eixo Y
+        else if (direcao > 0) {
+            Nave.statusY = 1;
+            anima(direcao)
+
+        }
+
+        // Inicia animação
+        function anima() {
+            var intervalo = setInterval(() => {
+                // Para a animação se statusY = 0
+                if (Nave.statusY == 0) {
+                    clearInterval(intervalo)
+                } else {
+                    // Se a direção for 1, move para cima
+                    if (direcao == 1) {
+                        if (Nave.y > -215) {
+                            Nave.y--
+                            Nave.elemento_html_nave.style.top = `${Nave.y}px`
+                        }
+                    }
+                    // Se a direção for 2, move para baixo
+                    else if (direcao == 2) {
+                        if (Nave.y < 215) {
+                            Nave.y++
+                            Nave.elemento_html_nave.style.top = `${Nave.y}px`
+                        }
+                    }
+                }
+            }, 1);
+        }
+
+    }
+
     static atirar(e) {
         var intervalo = setInterval(() => {
+            // Se a nave estiver com shootState = 1
             if (Nave.shootState == 1) {
+                // E o tiro não estiver em recarga
                 if (Nave.shootCooldown == 0) {
+                    // Cria instância de tiro
                     var tiro = new Tiro(`${Nave.x - 25} ,${Nave.y}`, 1)
+                    // Coloca recarga = 1
                     Nave.shootCooldown = 1
+                    // E com um temporizador de .6s
                     setTimeout(() => {
+                        // tira a recarga
                         Nave.shootCooldown = 0
                     }, 600);
                 }
             } else {
+                // Se shootState = 0, para de atirar.
                 clearInterval(intervalo)
             }
         }, 1);
