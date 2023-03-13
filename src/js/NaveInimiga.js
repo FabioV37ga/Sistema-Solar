@@ -63,6 +63,71 @@ class NaveInimiga {
         this.elemento_html_enemyShipbay = document.querySelectorAll(".shipBay")
     }
 
+    static ativar() {
+        this.selecionar();
+
+        // Gera os intervalos para os tiros.
+        // Resumindo, existe um intervalo pai para fazer simular recarga de munição e
+        //            um intervalo filho que faz cada par de naves atirar.
+        //            A cada execução, o par interno mais próximo do par da execução
+        //            anterior atira. Quando resta o quadrante número 5, somente ele é ativado.
+
+        disparar()
+        // Esse intervalo verifica se ainda existem inimigos em campo, caso sim, executa um loop para atirar
+        var intervalo = setInterval(() => {
+            // Começa com 9 inimigos, por conta das 9 casas
+            var inimigos = 9
+            for (let i = 0; i <= 8; i++) {
+                // Executa 9 vezes buscando por inimigos, sempre que não encontra, desconta 1 do valor 9
+                if (NaveInimiga.elemento_html_enemyArea[0].children[i].children.length == 0)
+                    inimigos--
+            }
+            // Se ainda existirem inimigos depois da verificação
+            if (inimigos > 0) {
+                // Dispara
+                disparar()
+            } else {
+                // Do contrario, para o intervalo p/ prosseguir de fase.
+                clearInterval(intervalo)
+            }
+        }, 400 * 5 * 1.5);
+
+        // Essa função controla a ordem de disparo [| 1-9 | 2-8 | 3-7 | 4-6 | 5 |]
+        function disparar() {
+            var a = 1
+            var b = 9
+            var intervalo = setInterval(() => {
+                if (a != b) {
+                    if (NaveInimiga.elemento_html_enemyShipbay[a - 1].children.length > 0) {
+                        console.log("Nave casa " + a + " disparou.")
+                        var tiro = new TiroInimigo(a - 1)
+                    } else {
+                    }
+                    if (NaveInimiga.elemento_html_enemyShipbay[b - 1].children.length > 0) {
+                        console.log("Nave casa " + b + " disparou.")
+                        var tiro = new TiroInimigo(b - 1)
+                    } else {
+                    }
+                    if (NaveInimiga.elemento_html_enemyShipbay[b - 1].children.length > 0 ||
+                        NaveInimiga.elemento_html_enemyShipbay[a - 1].children.length > 0) {
+                        console.log("---------------------------")
+                    }
+                } else {
+                    if (NaveInimiga.elemento_html_enemyShipbay[b - 1].children.length > 0) {
+
+                        console.log("Nave casa " + a + " disparou.")
+                        var tiro = new TiroInimigo(a - 1)
+                        console.log("---------------------------")
+                    }
+                    clearInterval(intervalo)
+                }
+                a <= 5 ? a++ : a = 5;
+                b >= 5 ? b-- : b = 5;
+            }, 400);
+
+        }
+    }
+
     static explodir(nave) {
         // Elemento correspondente a nave inimiga a ser destruida
         var atual = $(".shipBay")[nave].children[0];
@@ -85,13 +150,15 @@ class NaveInimiga {
                 // quando terminar a animação, apaga o elemento e para o intervalo.
                 if (img == 8) {
                     atual.remove();
-                    if (this.estado == 1) {
-                        this.estado = 0
+
+                    if (NaveInimiga.estado != 1) {
+                    } else {
+                        NaveInimiga.estado = 0
                         Jogo.verificaInimigos()
-                        setTimeout(() => {
-                            this.estado = 1
-                        }, 100);
                     }
+                    setTimeout(() => {
+                        NaveInimiga.estado = 1
+                    }, 602);
                     clearInterval(intervalo)
                 }
             }

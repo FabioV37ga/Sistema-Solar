@@ -53,4 +53,10 @@
 
 .tiroInimigo {
     background: orangered;
+    height: 3px;
+    width: 10px;
+    left: 10px;
+    z-index: -1;
+    position: absolute;
+    align-self: center;
 }
