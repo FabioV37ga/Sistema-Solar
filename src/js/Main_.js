@@ -15,8 +15,10 @@ function handleKeydown(e) {
     Inicio.criar()
     window.audio.play();
 
-    // Essa parte define o volume da triha sonora baseada no último valor colocado pelo usuário, caso
-    //      o usuário já tenha acessado anteriormente.
+    /* 
+        Essa parte define o volume da triha sonora baseada no último valor colocado pelo usuário, caso
+      o usuário já tenha acessado anteriormente.
+    */
     if (window.localStorage.getItem("soundtrack_volume") === null) {
       window.audio.volume = 0.05
     } else {
