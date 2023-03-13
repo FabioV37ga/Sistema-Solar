@@ -77,12 +77,14 @@
 }
 
 @keyframes closeCircle {
-    0%{
+    0% {
         border: 4px rgb(62, 236, 39) solid;
     }
-    66%{
+
+    66% {
         border: 4px rgb(62, 236, 39) solid;
     }
+
     100% {
         border: 0px rgb(62, 236, 39) solid;
     }
@@ -110,7 +112,7 @@
     }
 }
 
-.close-arrow{
+.close-arrow {
     animation: 3s closeArrow;
 }
 
@@ -156,20 +158,22 @@
 
 }
 
-.close-box{
+.close-box {
     animation: 3s closeBox
 }
 
 @keyframes closeBox {
-    0%{
+    0% {
         padding: 235px;
         padding: 5px;
     }
-    33%{
+
+    33% {
         width: 0px;
         padding: 0px;
     }
-    100%{
+
+    100% {
         width: 0px;
         padding: 0px;
     }
