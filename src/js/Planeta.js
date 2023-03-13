@@ -5,17 +5,18 @@ Classe Planeta
 
 Índice
     1. Atributos
-        1.1 ID →
-        1.2 Nome →
-        1.3 Tamanho →
-        1.4 Texto →
+        1.1 planetas → JSON com informações dos 8 planetas.
+        1.2 ID → ID da instância atual
+        1.3 Nome → String de nome do planeta da instância atual
+        1.4 Tamanho → String de tamanho do planeta da instância atual
+        1.5 Texto → String das características do planeta da instância atual
     2. Métodos
-        2.1 criar(parte) →
-            2.1.1 (1) →
-            2.1.2 (2) →
-        2.2 mostrar() →
-        2.3 animar() →
-        2.4 esconder() →
+        2.1 criar(parte) → Cria elementos do planeta
+            2.1.1 (1) → Cria elementos div.planetArea>img.planeta (Parte do planeta)
+            2.1.2 (2) → Cria elementos div.planeta-info>... (Parte das informações do planeta)
+        2.2 mostrar() → Adiciona classe de animação ao planeta para que ele se centralize.
+        2.3 controlar() → Adiciona função ao botão da caixa de informações, para fechar a caixa.
+        2.4 esconder() → Adiciona animação de saída ao planeta para a esquerda, no final, remove os elementos.
 */
 class Planeta {
     static planetas = `
@@ -66,7 +67,7 @@ class Planeta {
             "id": 8,
             "nome": "Netuno",
             "tamanho": "49.244 km",
-            "texto": "Localizado na região externa do sistema solar. Composição parecida com urano. Acredita-se que o núcleo seja composto de rochas, gelo e metais pesados. Ventos em saturno podem chegar em até 2.000km/h. Possui uma lua chamada Tritão, que é coberta de gelo e tem vulcões ativos. Um dia em Netuno dura cerca de 16 horas e 6 minutos na Terra."
+            "texto": "Localizado na região externa do sistema solar. Composição parecida com urano. Acredita-se que o núcleo seja de rochas, gelo e metais pesados. Ventos em saturno podem chegar em até 2.000km/h. Possui uma lua chamada Tritão, que é coberta de gelo e tem vulcões ativos. Um dia em Netuno dura cerca de 16 horas e 6 minutos na Terra."
         }
     ]`
 
@@ -80,39 +81,40 @@ class Planeta {
         var planetaAtual = planeta.find(planeta => planeta.id === faseAtual)
         // Cria area e imagem do planeta
 
-        var nomeFormatado = planetaAtual.nome.toString().toLowerCase().replace("ú", "u").replace("ê", "e")
-
-        if (parte == 1) {
-            $(".jogo").append(`
-                <div class="planetarea">
-                    <div class="planeta">
-                        <img src="src/planetas/outro/${planetaAtual.id}_${nomeFormatado}.svg">
-                    </div>
-                </div>
-             `)
-        }
-        // Cria aba de informações do planeta
-        else {
-            $(".planetarea").append(`
-                <div class="planeta-info">
-                    <div class="info">
-                        <div class="info-pointer">
-                            <div class="pointer-circle"></div>
-                            <div class="pointer-arrow"></div>
+        switch (parte) {
+            case 1:
+                var nomeFormatado = planetaAtual.nome.toString().toLowerCase().replace("ú", "u").replace("ê", "e")
+                $(".jogo").append(`
+                    <div class="planetarea">
+                        <div class="planeta">
+                            <img src="src/planetas/outro/${planetaAtual.id}_${nomeFormatado}.svg">
                         </div>
-                        <div class="info-box">
-                            <h1 class="info-title">${planetaAtual.nome}</h1>
-                            <div class="info-size">Tamanho: <br> ${planetaAtual.tamanho}</div>
-                            <div class="info-text">
-                                <h1>Informações Gerais</h1>
-                                <p>${planetaAtual.texto}
-                                </p>
+                    </div>
+                 `)
+                break;
+            case 2:
+                // Cria aba de informações do planeta
+                $(".planetarea").append(`
+                    <div class="planeta-info">
+                        <div class="info">
+                            <div class="info-pointer">
+                                <div class="pointer-circle"></div>
+                                <div class="pointer-arrow"></div>
                             </div>
-                            <button class="info-continuar">Continuar</button>
+                            <div class="info-box">
+                                <h1 class="info-title">${planetaAtual.nome}</h1>
+                                <div class="info-size">Tamanho: <br> ${planetaAtual.tamanho}</div>
+                                <div class="info-text">
+                                    <h1>Informações Gerais</h1>
+                                    <p>${planetaAtual.texto}
+                                    </p>
+                                </div>
+                                <button class="info-continuar">Continuar</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `)
+                `)
+                break;
         }
     }
 
@@ -121,8 +123,6 @@ class Planeta {
         $(".planeta")[0].children[0].addEventListener("animationend", () => {
             $(".planeta")[0].children[0].style.marginLeft = "-90px"
             Analise.criar(1)
-            // this.criar(Jogo.faseAtual, 2)
-            // this.controlar()
         })
         $(".planeta")[0].children[0].classList.add("in")
     }
