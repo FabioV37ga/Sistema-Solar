@@ -36,6 +36,7 @@ class NaveInimiga {
         <img src="src/img/ship-enemy.png" value="1">
     </div>`
     static audio = new Audio('src/sound/boom.wav')
+    static audioGun = new Audio('src/sound/shootEnemy.mp3')
     static elemento_html_enemyArea;
     static elemento_html_enemyShipbay;
     static estado = 1;
@@ -94,30 +95,40 @@ class NaveInimiga {
 
         // Essa função controla a ordem de disparo [| 1-9 | 2-8 | 3-7 | 4-6 | 5 |]
         function disparar() {
+            NaveInimiga.audioGun.volume = 0.05
             var a = 1
             var b = 9
             var intervalo = setInterval(() => {
                 if (a != b) {
                     if (NaveInimiga.elemento_html_enemyShipbay[a - 1].children.length > 0) {
-                        console.log("Nave casa " + a + " disparou.")
+                        // console.log("Nave casa " + a + " disparou.")
                         var tiro = new TiroInimigo(a - 1)
                     } else {
                     }
                     if (NaveInimiga.elemento_html_enemyShipbay[b - 1].children.length > 0) {
-                        console.log("Nave casa " + b + " disparou.")
+                        // console.log("Nave casa " + b + " disparou.")
                         var tiro = new TiroInimigo(b - 1)
                     } else {
                     }
                     if (NaveInimiga.elemento_html_enemyShipbay[b - 1].children.length > 0 ||
                         NaveInimiga.elemento_html_enemyShipbay[a - 1].children.length > 0) {
-                        console.log("---------------------------")
+                            if (NaveInimiga.audioGun.paused == false){
+                                NaveInimiga.audioGun.currentTime = 0
+                            }else{
+                                NaveInimiga.audioGun.play()
+                            }
+                        // console.log("---------------------------")
                     }
                 } else {
                     if (NaveInimiga.elemento_html_enemyShipbay[b - 1].children.length > 0) {
-
-                        console.log("Nave casa " + a + " disparou.")
+                        if (NaveInimiga.audioGun.paused == false){
+                            NaveInimiga.audioGun.currentTime = 0
+                        }else{
+                            NaveInimiga.audioGun.play()
+                        }
+                        // console.log("Nave casa " + a + " disparou.")
                         var tiro = new TiroInimigo(a - 1)
-                        console.log("---------------------------")
+                        // console.log("---------------------------")
                     }
                     clearInterval(intervalo)
                 }
