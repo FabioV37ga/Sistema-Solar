@@ -183,6 +183,8 @@ class Nave {
             Nave.elemento_html_nave.children[0].src = `src/img/boom_${img}.png`
             if (img == 8){
                 Nave.elemento_html_nave.remove()
+                Nave.x = 210;
+                Nave.y = 0;
                 clearInterval(intervalo)
                 setTimeout(() => {
                     Nave.criar()
