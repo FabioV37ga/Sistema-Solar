@@ -4,38 +4,55 @@ class TiroInimigo {
     elemento_html;
     id;
     x;
-    y;
+    nave;
 
-    constructor(y) {
+    constructor(nave) {
         TiroInimigo.id++
         this.id = TiroInimigo.id
-        this.y = y
+        this.nave = nave
         this.criar()
     }
 
     criar() {
         var campo = document.querySelectorAll(".shipBay")
-        $("<div>", { class: "tiroInimigo", id: this.id }).appendTo(campo[this.y].children[0]);
+        $("<div>", { class: "tiroInimigo", id: this.id }).appendTo(campo[this.nave].children[0]);
         this.controlar();
     }
 
     controlar() {
         var atual = this.selecionar()
+        var nave = this.nave
         animar()
 
         var x = 10;
         function animar() {
             var intervalo = setInterval(() => {
-                x++;
                 if (x < 645) {
                     atual.style = `left: ${x}px`
+                    if (x >= 395 && Nave.vulneravel == true){
+                        verificaTiro()
+                    }
                 } else {
                     atual.remove();
                     clearInterval(intervalo)
                 }
+                x++;
             }, 1);
         }
 
+        function verificaTiro() {
+            var nave = document.querySelector(".ally").getBoundingClientRect();
+            var tiro = atual.getBoundingClientRect();
+
+            if (nave.bottom >= tiro.bottom &&
+                nave.top <= tiro.top) {
+                if (Math.floor(nave.right) == Math.floor(tiro.left)) {        
+                    Nave.explodir()
+                    atual.remove()
+                    console.log("Nave aliada atingida.  ")
+                }
+            }
+        }
     }
 
     selecionar() {
