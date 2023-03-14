@@ -79,10 +79,10 @@ class Jogo {
                         event.keyCode == 38 || event.key == 'a' ||
                         event.keyCode == 39 || event.key == 's' ||
                         event.keyCode == 40 || event.key == 'd') {
-                        setTimeout(() => {
-                            Jogo.janela.removeEventListener("keydown", handleTutorial1)
-                            Tutorial.apagar()
-                        }, 15);
+
+                        Jogo.janela.removeEventListener("keydown", handleTutorial1)
+                        Tutorial.apagar()
+
                         // Quando recebe, ativa movimentação e começa fase 1:
                         Jogo.ativarMovimentacao()
                         Jogo.avancarFase()
@@ -364,7 +364,7 @@ class Jogo {
         if (document.querySelector(".enemy")) {
         } else {
             // Apaga a area inimiga
-            document.querySelector(".enemyArea").remove()
+            document.querySelector(".enemyArea") ? document.querySelector(".enemyArea").remove() : null;
             // Desativa armas
             Jogo.enableShoot = 0;
             // Viaja para o próximo estágio da fase

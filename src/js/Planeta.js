@@ -87,7 +87,7 @@ class Planeta {
                 $(".jogo").append(`
                     <div class="planetarea">
                         <div class="planeta">
-                            <img src="src/planetas/outro/${planetaAtual.id}_${nomeFormatado}.svg">
+                            <img src="src/planetas/${planetaAtual.id}_${nomeFormatado}.svg">
                         </div>
                     </div>
                  `)
