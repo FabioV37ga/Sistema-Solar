@@ -35,8 +35,14 @@ class Nave {
     static y = 0;
     static shootCooldown = 0;
     static shootState = 0
+    static vulneravel = true
+    static audio = new Audio('src/sound/boom.wav');
     static criar() {
-        $(".playarea").append(this.elemento_jquery);
+        if (Jogo.faseAtual <= 0){
+            $(".playarea").append(this.elemento_jquery);
+        }else{
+            $(".playarea").prepend(this.elemento_jquery);
+        }
         this.selecionar();
     }
 
@@ -51,6 +57,11 @@ class Nave {
                 Jogo.iniciar()
             }else{
                 // TODO: Ativar movimentação da nave e adicionar classe de blink
+                Jogo.enableMove = 1
+                setTimeout(() => {
+                    console.log("VULNERAVEL NOVAMENTE")
+                    Nave.vulneravel = true;
+                }, 3000);
             }
         });
     }
@@ -160,5 +171,23 @@ class Nave {
                 clearInterval(intervalo)
             }
         }, 1);
+    }
+
+    static explodir(){
+        Nave.vulneravel = false;
+        Jogo.enableMove = 0
+        this.audio.play()
+        var img = 0;
+        var intervalo = setInterval(() => {
+            img++;
+            Nave.elemento_html_nave.children[0].src = `src/img/boom_${img}.png`
+            if (img == 8){
+                Nave.elemento_html_nave.remove()
+                clearInterval(intervalo)
+                setTimeout(() => {
+                    Nave.criar()
+                }, 100);
+            }
+        }, 100);
     }
 }
